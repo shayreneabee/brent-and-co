@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-labelledby="title desc">
+  <title id="title">Second Chance Careers logo</title>
+  <desc id="desc">A supportive career pathway logo.</desc>
+  <rect width="640" height="420" rx="56" fill="#eef8f0"/>
+  <path d="M116 286c50-86 118-129 204-129s154 43 204 129" fill="none" stroke="#087d15" stroke-width="42" stroke-linecap="round"/>
+  <path d="M320 98v220" stroke="#123965" stroke-width="34" stroke-linecap="round"/>
+  <path d="m246 176 74-78 74 78" fill="none" stroke="#123965" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="70" y="370" fill="#123965" font-family="Georgia, 'Times New Roman', serif" font-size="48">Second Chance Careers</text>
+</svg>

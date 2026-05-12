@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-labelledby="title desc">
+  <title id="title">Find the Beat logo</title>
+  <desc id="desc">An orange music energy logo for Find the Beat.</desc>
+  <rect width="640" height="420" rx="56" fill="#fff4e9"/>
+  <circle cx="216" cy="198" r="114" fill="#ff8a2a"/>
+  <circle cx="216" cy="198" r="74" fill="#2c1a10"/>
+  <circle cx="216" cy="198" r="22" fill="#fff4e9"/>
+  <path d="M356 112v164c0 34-28 62-68 62-34 0-61-21-61-48 0-28 27-49 61-49 12 0 23 3 32 8V112h36Zm0 0h134v54H356v-54Z" fill="#2c1a10"/>
+  <text x="68" y="374" fill="#2c1a10" font-family="Georgia, 'Times New Roman', serif" font-size="58">Find the Beat</text>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-labelledby="title desc">
+  <title id="title">Brent and Co. logo</title>
+  <desc id="desc">A warm Brent and Co. umbrella logo mark.</desc>
+  <rect width="640" height="420" rx="56" fill="#fff6e6"/>
+  <circle cx="164" cy="154" r="64" fill="#087d15"/>
+  <circle cx="244" cy="154" r="64" fill="#efbd5a"/>
+  <circle cx="204" cy="222" r="64" fill="#123965"/>
+  <path d="M376 126h64c49 0 82 25 82 64 0 25-13 43-35 53 29 9 46 30 46 61 0 47-38 74-92 74h-65V126Zm62 102c25 0 41-12 41-32s-16-31-41-31h-21v63h21Zm5 111c29 0 47-14 47-37 0-24-18-38-48-38h-25v75h26Z" fill="#2c1a10"/>
+  <text x="74" y="342" fill="#2c1a10" font-family="Georgia, 'Times New Roman', serif" font-size="66" letter-spacing="1">Brent &amp; Co.</text>
+</svg>
