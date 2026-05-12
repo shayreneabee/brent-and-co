@@ -173,6 +173,18 @@ h3 {
   box-shadow: none;
 }
 
+.deploy-note {
+  display: inline-flex;
+  align-items: center;
+  min-height: 46px;
+  padding: 0 12px;
+  border: 1px dashed rgba(44, 26, 16, 0.24);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 850;
+}
+
 .hero-panel {
   display: grid;
   gap: 16px;
