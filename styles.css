@@ -173,6 +173,14 @@ h3 {
   box-shadow: none;
 }
 
+.button.disabled {
+  cursor: not-allowed;
+  border-color: rgba(44, 26, 16, 0.18);
+  background: #fffdf7;
+  color: rgba(44, 26, 16, 0.72);
+  box-shadow: none;
+}
+
 .deploy-note {
   display: inline-flex;
   align-items: center;
@@ -283,13 +291,48 @@ h3 {
   gap: 14px;
 }
 
-.link-grid a {
+.link-grid a,
+.status-card {
   overflow-wrap: anywhere;
   padding: 18px;
   border: 1px solid rgba(44, 26, 16, 0.14);
   border-radius: 18px;
   background: rgba(255, 253, 247, 0.82);
   font-weight: 850;
+}
+
+.status-card {
+  --accent: var(--gold);
+  display: grid;
+  gap: 8px;
+  min-height: 132px;
+  align-content: center;
+  border-top: 6px solid var(--accent);
+}
+
+.status-card strong {
+  font-size: 1.05rem;
+}
+
+.status-card span {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.status-card.gold {
+  --accent: var(--gold);
+}
+
+.status-card.orange {
+  --accent: var(--orange);
+}
+
+.status-card.blue {
+  --accent: var(--blue);
+}
+
+.status-card.career {
+  --accent: var(--career);
 }
 
 .story-section {
@@ -300,6 +343,53 @@ h3 {
   max-width: 760px;
   margin-bottom: 0;
   font-size: 1.1rem;
+}
+
+.ecosystem-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  padding: 24px clamp(20px, 7vw, 120px);
+  background: #2c1a10;
+  border-top: 1px solid rgba(255, 248, 233, 0.16);
+}
+
+.ecosystem-icon {
+  --accent: var(--gold);
+  display: grid;
+  place-items: center;
+  width: 58px;
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--accent) 58%, white);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--accent) 84%, white);
+  color: #2c1a10;
+  font-size: 0.82rem;
+  font-weight: 950;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.ecosystem-icon:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.28);
+}
+
+.ecosystem-icon.gold {
+  --accent: var(--gold);
+}
+
+.ecosystem-icon.orange {
+  --accent: var(--orange);
+}
+
+.ecosystem-icon.blue {
+  --accent: var(--blue);
+}
+
+.ecosystem-icon.career {
+  --accent: var(--career);
 }
 
 @media (max-width: 980px) {

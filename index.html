@@ -15,7 +15,7 @@
       </a>
       <nav aria-label="Main navigation">
         <a href="#platforms">Platforms</a>
-        <a href="#links">Links</a>
+        <a href="#links">Launch Status</a>
         <a href="#about">About</a>
       </nav>
     </header>
@@ -32,7 +32,7 @@
           </p>
           <div class="actions">
             <a class="button" href="#platforms">Explore the Platforms</a>
-            <a class="button secondary" href="https://github.com/shayreneabee/Lets-Cook" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="button secondary" href="#links">Deployment Status</a>
           </div>
         </div>
         <div class="hero-panel" aria-label="Brent and Co platform highlights">
@@ -50,46 +50,46 @@
           <p>Each platform has its own personality, but they all belong to the same Brent & Co. family.</p>
         </div>
         <div class="platform-grid">
-          <article class="platform-card gold">
+          <article class="platform-card gold" id="lets-cook-card">
             <img src="assets/lets-cook-logo.png" alt="" />
             <span>Cooking confidence</span>
             <h3>Let’s Cook Ya’ll</h3>
             <p>A warm cooking-skills app for recipes, Cook 101 lessons, Shay’s Kitchen, meal planning, and hosting.</p>
             <div class="card-actions">
-              <a class="button" href="https://github.com/shayreneabee/Lets-Cook" target="_blank" rel="noreferrer">Open Correct Repo</a>
+              <span class="button disabled" aria-disabled="true">Launch Coming Soon</span>
               <span class="deploy-note">Render deploy pending</span>
             </div>
           </article>
 
-          <article class="platform-card orange">
+          <article class="platform-card orange" id="find-the-beat-card">
             <img src="assets/find-the-beat-logo.svg" alt="" />
             <span>Music energy</span>
             <h3>Find the Beat</h3>
             <p>A creative music platform for discovery, community rhythm, artists, events, and culture through sound.</p>
             <div class="card-actions">
-              <a class="button" href="https://github.com/shayreneabee/find-the-beat" target="_blank" rel="noreferrer">Open Correct Repo</a>
+              <span class="button disabled" aria-disabled="true">Launch Coming Soon</span>
               <span class="deploy-note">Render deploy pending</span>
             </div>
           </article>
 
-          <article class="platform-card blue">
+          <article class="platform-card blue" id="beu-card">
             <img src="assets/beu-logo.jpg" alt="" />
             <span>Cultural compass</span>
             <h3>BEU</h3>
             <p>A global, location-aware cultural compass for Black-owned places, events, food, community, and travel.</p>
             <div class="card-actions">
-              <a class="button" href="https://github.com/shayreneabee/BEU" target="_blank" rel="noreferrer">Open Correct Repo</a>
+              <span class="button disabled" aria-disabled="true">Launch Coming Soon</span>
               <span class="deploy-note">Render deploy pending</span>
             </div>
           </article>
 
-          <article class="platform-card career">
+          <article class="platform-card career" id="second-chance-card">
             <img src="assets/second-chance-logo.svg" alt="" />
             <span>Career support</span>
             <h3>Second Chance Careers</h3>
             <p>A practical, supportive career platform for jobs, training, resumes, resources, and rebuilding with dignity.</p>
             <div class="card-actions">
-              <a class="button" href="https://github.com/shayreneabee/Second-Chance-Careers" target="_blank" rel="noreferrer">Open Correct Repo</a>
+              <span class="button disabled" aria-disabled="true">Launch Coming Soon</span>
               <span class="deploy-note">Render deploy pending</span>
             </div>
           </article>
@@ -98,14 +98,27 @@
 
       <section class="section link-section" id="links">
         <div class="section-heading">
-          <p class="eyebrow">Correct links</p>
-          <h2>Source destinations</h2>
+          <p class="eyebrow">Public launch links</p>
+          <h2>Deployment destinations</h2>
+          <p>Source code links are intentionally kept off the public homepage. These buttons will become live launch links after the correct Render services are connected.</p>
         </div>
-        <div class="link-grid">
-          <a href="https://github.com/shayreneabee/Lets-Cook" target="_blank" rel="noreferrer">github.com/shayreneabee/Lets-Cook</a>
-          <a href="https://github.com/shayreneabee/find-the-beat" target="_blank" rel="noreferrer">github.com/shayreneabee/find-the-beat</a>
-          <a href="https://github.com/shayreneabee/BEU" target="_blank" rel="noreferrer">github.com/shayreneabee/BEU</a>
-          <a href="https://github.com/shayreneabee/Second-Chance-Careers" target="_blank" rel="noreferrer">github.com/shayreneabee/Second-Chance-Careers</a>
+        <div class="link-grid status-grid">
+          <article class="status-card gold">
+            <strong>Let’s Cook Ya’ll</strong>
+            <span>Render launch link pending</span>
+          </article>
+          <article class="status-card orange">
+            <strong>Find the Beat</strong>
+            <span>Render launch link pending</span>
+          </article>
+          <article class="status-card blue">
+            <strong>BEU</strong>
+            <span>Render launch link pending</span>
+          </article>
+          <article class="status-card career">
+            <strong>Second Chance Careers</strong>
+            <span>Render launch link pending</span>
+          </article>
         </div>
       </section>
 
@@ -118,5 +131,12 @@
         </p>
       </section>
     </main>
+
+    <footer class="ecosystem-footer" aria-label="Brent and Co platform shortcuts">
+      <a class="ecosystem-icon gold" href="#lets-cook-card" aria-label="Let's Cook Ya'll">LC</a>
+      <a class="ecosystem-icon orange" href="#find-the-beat-card" aria-label="Find the Beat">FTB</a>
+      <a class="ecosystem-icon blue" href="#beu-card" aria-label="BEU">BEU</a>
+      <a class="ecosystem-icon career" href="#second-chance-card" aria-label="Second Chance Careers">SC</a>
+    </footer>
   </body>
 </html>
