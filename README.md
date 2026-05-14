@@ -6,7 +6,7 @@ The dedicated umbrella homepage for the Brent & Co. ecosystem.
 
 - Let's Cook Ya'll: corrected Render link needed
 - Find the Beat: https://find-the-beat-2.onrender.com
-- BEU: corrected Render link needed
+- BEU: https://beu-b107.onrender.com/
 - Second Chance Careers: https://second-chance-careers.onrender.com
 
 Do not use the old Netlify Brent & Co. page, the old `lets-cook.onrender.com` app, or the old BEU Vercel app as final launch destinations. Source code links are intentionally kept off the public homepage. Brent & Co. should act as the launch umbrella for the live platforms.
