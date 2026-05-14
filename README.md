@@ -4,7 +4,7 @@ The dedicated umbrella homepage for the Brent & Co. ecosystem.
 
 ## Public Platform Links
 
-- Let's Cook Ya'll: corrected Render link needed
+- Let's Cook Ya'll: https://lets-cook-7rei.onrender.com/
 - Find the Beat: https://find-the-beat-2.onrender.com
 - BEU: https://beu-b107.onrender.com/
 - Second Chance Careers: https://second-chance-careers.onrender.com
