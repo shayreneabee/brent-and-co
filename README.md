@@ -2,14 +2,14 @@
 
 The dedicated umbrella homepage for the Brent & Co. ecosystem.
 
-## Correct Platform Repositories
+## Public Platform Links
 
-- Let's Cook Ya'll: https://github.com/shayreneabee/Lets-Cook
-- Find the Beat: https://github.com/shayreneabee/find-the-beat
-- BEU: https://github.com/shayreneabee/BEU
-- Second Chance Careers: https://github.com/shayreneabee/Second-Chance-Careers
+- Let's Cook Ya'll: https://lets-cook.onrender.com
+- Find the Beat: https://find-the-beat-2.onrender.com
+- BEU: https://beu-pi.vercel.app/
+- Second Chance Careers: https://second-chance-careers.onrender.com
 
-Use the repo links until each corrected app has its own fresh Render deployment. Do not point Brent & Co. to older deployed URLs that show the wrong app.
+Source code links are intentionally kept off the public homepage. Brent & Co. should act as the launch umbrella for the live platforms.
 
 ## Deploy on Render
 
