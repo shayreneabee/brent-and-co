@@ -6,7 +6,7 @@ The dedicated umbrella homepage for the Brent & Co. ecosystem.
 
 - Brent & Co.: https://brentandco.org/
 - Let's Cook Ya'll: https://letscookyall.com/
-- Find the Beat: https://www.findthebeatmusic.com/
+- Find the Beat: https://findthebeatmusic.com/
 - BEU: https://beutravel.org/
 - Second Chance Careers: https://secondchancecareers.org/
 
