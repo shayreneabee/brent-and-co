@@ -1,0 +1,22 @@
+{
+  "name": "Brent & Co",
+  "short_name": "Brent & Co",
+  "description": "A warm Brent & Co ecosystem for music, cooking, careers, culture, and community.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#fff7e8",
+  "theme_color": "#2c1a10",
+  "icons": [
+    {
+      "src": "assets/brent-co-wordmark.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/brent-co-wordmark.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
