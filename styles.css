@@ -270,9 +270,25 @@ h2 {
   border: 1px solid rgba(255, 247, 232, 0.16);
   border-radius: 26px;
   background: rgba(255, 247, 232, 0.12);
+  background-position: center;
+  background-size: cover;
   box-shadow: 0 18px 48px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(22px);
+  overflow: hidden;
   transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.preview-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(44, 26, 16, 0.4), rgba(44, 26, 16, 0.78)),
+    var(--preview-image);
+  background-position: center;
+  background-size: cover;
+  z-index: -1;
+  transform: scale(1.03);
 }
 
 .preview-card:hover {
@@ -281,6 +297,7 @@ h2 {
 }
 
 .preview-card img {
+  position: relative;
   width: 3.55rem;
   height: 3.55rem;
   object-fit: cover;
@@ -290,6 +307,7 @@ h2 {
 }
 
 .preview-card span {
+  position: relative;
   display: block;
   margin-top: 0.75rem;
   color: var(--gold);
@@ -300,6 +318,7 @@ h2 {
 }
 
 .preview-card strong {
+  position: relative;
   display: block;
   margin-top: 0.35rem;
   font-family: Georgia, "Times New Roman", serif;
@@ -308,6 +327,7 @@ h2 {
 }
 
 .preview-card p {
+  position: relative;
   margin: 0.45rem 0 0;
   color: rgba(255, 247, 232, 0.78);
   font-size: 0.9rem;
@@ -315,6 +335,7 @@ h2 {
 }
 
 .preview-card em {
+  position: relative;
   align-self: end;
   margin-top: 0.75rem;
   color: var(--cream);
@@ -329,6 +350,11 @@ h2 {
 .preview-beu {
   inset: auto;
 }
+
+.preview-ftb { --preview-image: url("assets/editorial-music-collab.jpg"); }
+.preview-cook { --preview-image: url("assets/editorial-cooking-hero.jpg"); }
+.preview-career { --preview-image: url("assets/editorial-career-support.jpg"); }
+.preview-beu { --preview-image: url("assets/editorial-culture-travel.jpg"); }
 
 .scroll-cue {
   position: absolute;
@@ -524,7 +550,9 @@ h2 {
 }
 
 .recipe-float img {
-  width: 7rem;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
   border-radius: 24px;
 }
 
@@ -560,7 +588,7 @@ h2 {
 }
 
 .compass-visual img {
-  width: 8rem;
+  width: 9rem;
   aspect-ratio: 1;
   object-fit: cover;
   border: 8px solid rgba(255, 255, 255, 0.8);
