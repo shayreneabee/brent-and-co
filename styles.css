@@ -250,23 +250,6 @@ h2 {
   font-size: 1.08rem;
 }
 
-.hero-proof {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
-  margin-top: 1.15rem;
-}
-
-.hero-proof span {
-  padding: 0.54rem 0.72rem;
-  border: 1px solid rgba(255, 247, 232, 0.16);
-  border-radius: 999px;
-  background: rgba(255, 247, 232, 0.12);
-  color: rgba(255, 247, 232, 0.86);
-  font-size: 0.82rem;
-  font-weight: 850;
-}
-
 .actions {
   display: flex;
   flex-wrap: wrap;
