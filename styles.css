@@ -93,14 +93,14 @@ nav a:hover {
 nav a:hover::after { transform: scaleX(1); }
 
 .cinematic {
-  min-height: 68svh;
+  min-height: 58svh;
   position: relative;
   isolation: isolate;
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(18rem, 0.72fr);
-  gap: clamp(1.25rem, 4vw, 3.5rem);
+  grid-template-columns: minmax(0, 0.82fr) minmax(22rem, 0.88fr);
+  gap: clamp(1.25rem, 4vw, 3rem);
   align-items: center;
-  padding: 5.35rem clamp(1rem, 6vw, 6rem) 2.6rem;
+  padding: 5.05rem clamp(1rem, 6vw, 6rem) 2.2rem;
   overflow: hidden;
   background:
     radial-gradient(circle at 18% 28%, rgba(239, 189, 90, 0.24), transparent 18rem),
@@ -178,8 +178,8 @@ h1, h2, h3 {
 }
 
 h1 {
-  max-width: 680px;
-  font-size: clamp(2.75rem, 4.45vw, 3.95rem);
+  max-width: 620px;
+  font-size: clamp(2.45rem, 3.85vw, 3.55rem);
   line-height: 1;
 }
 
@@ -253,18 +253,24 @@ h2 {
 }
 
 .hero-previews {
-  min-height: 23.5rem;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
   position: relative;
 }
 
 .preview-card {
-  position: absolute;
-  width: min(14.2rem, 72vw);
-  padding: 0.82rem;
+  position: relative;
+  width: 100%;
+  min-height: 12.4rem;
+  display: grid;
+  align-content: start;
+  padding: 0.86rem;
   border: 1px solid rgba(255, 247, 232, 0.16);
-  border-radius: 30px;
+  border-radius: 26px;
   background: rgba(255, 247, 232, 0.12);
-  box-shadow: 0 28px 76px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(22px);
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
@@ -304,14 +310,25 @@ h2 {
 .preview-card p {
   margin: 0.45rem 0 0;
   color: rgba(255, 247, 232, 0.78);
-  font-size: 0.94rem;
+  font-size: 0.9rem;
   line-height: 1.5;
 }
 
-.preview-ftb { right: 9%; top: 0; }
-.preview-cook { left: 0; top: 5.9rem; }
-.preview-career { right: 0; top: 11.6rem; }
-.preview-beu { left: 18%; bottom: 0; }
+.preview-card em {
+  align-self: end;
+  margin-top: 0.75rem;
+  color: var(--cream);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 950;
+}
+
+.preview-ftb,
+.preview-cook,
+.preview-career,
+.preview-beu {
+  inset: auto;
+}
 
 .scroll-cue {
   position: absolute;
@@ -792,7 +809,7 @@ h2 {
   }
 
   .hero-previews {
-    min-height: 25rem;
+    min-height: 0;
   }
 
   .app-links {
@@ -823,8 +840,7 @@ h2 {
   .logo-orbit { width: 6.1rem; }
 
   .hero-previews {
-    min-height: 0;
-    display: grid;
+    grid-template-columns: 1fr;
     gap: 0.9rem;
   }
 
