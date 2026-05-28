@@ -233,6 +233,62 @@ h3 {
   gap: 1rem;
 }
 
+.device-mockup {
+  position: relative;
+  padding: 0.7rem;
+  border: 1px solid rgba(44, 26, 16, 0.08);
+  border-radius: 34px;
+  background: linear-gradient(145deg, rgba(255, 253, 248, 0.92), rgba(255, 239, 207, 0.68));
+  box-shadow: 0 30px 80px rgba(44, 26, 16, 0.16);
+  animation: soft-float 7s ease-in-out infinite;
+}
+
+.device-bar {
+  width: 4.4rem;
+  height: 0.34rem;
+  margin: 0.25rem auto 0.7rem;
+  border-radius: 999px;
+  background: rgba(44, 26, 16, 0.18);
+}
+
+.device-screen {
+  min-height: 13rem;
+  display: grid;
+  align-content: end;
+  gap: 0.45rem;
+  padding: 1.15rem;
+  border-radius: 26px;
+  background:
+    linear-gradient(160deg, rgba(44, 26, 16, 0.9), rgba(84, 56, 35, 0.78)),
+    radial-gradient(circle at 30% 25%, rgba(239, 189, 90, 0.36), transparent 12rem);
+  color: var(--cream);
+}
+
+.device-screen span,
+.device-screen em {
+  color: rgba(255, 247, 232, 0.72);
+  font-style: normal;
+  font-weight: 800;
+}
+
+.device-screen strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.02;
+}
+
+@keyframes soft-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -8px, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .device-mockup {
+    animation: none;
+  }
+}
+
 .mini-card {
   padding: 1.25rem;
   border: 1px solid rgba(255, 255, 255, 0.6);
