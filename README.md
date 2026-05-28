@@ -4,10 +4,11 @@ The dedicated umbrella homepage for the Brent & Co. ecosystem.
 
 ## Public Platform Links
 
-- Let's Cook Ya'll: https://lets-cook-7rei.onrender.com/
+- Brent & Co.: https://brentandco.org/
+- Let's Cook Ya'll: https://letscookyall.com/
 - Find the Beat: https://www.findthebeatmusic.com/
-- BEU: https://beu-b107.onrender.com/
-- Second Chance Careers: https://second-chance-careers.onrender.com
+- BEU: https://beutravel.org/
+- Second Chance Careers: https://secondchancecareers.org/
 
 Do not use the old Netlify Brent & Co. page, the old `lets-cook.onrender.com` app, or the old BEU Vercel app as final launch destinations. Source code links are intentionally kept off the public homepage. Brent & Co. should act as the launch umbrella for the live platforms.
 
@@ -20,4 +21,4 @@ Create a Static Site from this repository:
 - Build command: leave blank or use `echo "No build needed"`
 - Publish directory: `.`
 
-After the site is live, point the future Brent & Co. domain to this Render service.
+Brent & Co. is served at `brentandco.org`.
