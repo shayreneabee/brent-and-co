@@ -290,6 +290,9 @@ h3 {
 }
 
 .mini-card {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  align-items: center;
   padding: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 28px;
@@ -317,15 +320,26 @@ h3 {
   text-transform: uppercase;
 }
 
+.mini-card img {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+  border: 4px solid rgba(255, 253, 248, 0.82);
+  border-radius: 16px;
+  background: var(--white);
+  box-shadow: 0 10px 22px rgba(44, 26, 16, 0.12);
+}
+
 .mini-card strong {
   display: block;
-  margin-top: 0.75rem;
+  margin-top: 0.45rem;
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.35rem;
   font-weight: 400;
 }
 
 .mini-card p {
+  grid-column: 1 / -1;
   margin: 0.45rem 0 0;
 }
 
