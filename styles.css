@@ -36,7 +36,7 @@ img { display: block; max-width: 100%; }
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.8rem clamp(1rem, 5vw, 4.5rem);
+  padding: 0.65rem clamp(1rem, 5vw, 4.5rem);
   background: rgba(255, 247, 232, 0.62);
   border-bottom: 1px solid rgba(255, 255, 255, 0.22);
   box-shadow: 0 12px 36px rgba(44, 26, 16, 0.1);
@@ -44,7 +44,7 @@ img { display: block; max-width: 100%; }
 }
 
 .brand {
-  width: 6.2rem;
+  width: 4.85rem;
   display: inline-flex;
 }
 
@@ -62,9 +62,10 @@ nav {
 
 nav a {
   position: relative;
-  padding: 0.68rem 0.9rem;
+  padding: 0.58rem 0.82rem;
   border-radius: 999px;
   color: rgba(44, 26, 16, 0.76);
+  font-size: 0.94rem;
   font-weight: 850;
   transition: color 180ms ease, background 180ms ease, transform 180ms ease;
 }
@@ -92,14 +93,14 @@ nav a:hover {
 nav a:hover::after { transform: scaleX(1); }
 
 .cinematic {
-  min-height: 92svh;
+  min-height: 68svh;
   position: relative;
   isolation: isolate;
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(18rem, 0.72fr);
-  gap: clamp(1.5rem, 5vw, 4.5rem);
+  gap: clamp(1.25rem, 4vw, 3.5rem);
   align-items: center;
-  padding: 7rem clamp(1rem, 6vw, 6rem) 4.25rem;
+  padding: 5.35rem clamp(1rem, 6vw, 6rem) 2.6rem;
   overflow: hidden;
   background:
     radial-gradient(circle at 18% 28%, rgba(239, 189, 90, 0.24), transparent 18rem),
@@ -148,17 +149,17 @@ nav a:hover::after { transform: scaleX(1); }
 .particle-field span:nth-child(5) { left: 25%; top: 82%; animation-delay: -1s; }
 
 .logo-orbit {
-  width: 9.5rem;
-  padding: 0.75rem;
-  margin-bottom: 1.35rem;
+  width: 7.1rem;
+  padding: 0.58rem;
+  margin-bottom: 1rem;
   border: 1px solid rgba(255, 247, 232, 0.22);
-  border-radius: 32px;
+  border-radius: 26px;
   background: rgba(255, 247, 232, 0.16);
   box-shadow: 0 26px 70px rgba(0, 0, 0, 0.25);
   animation: breathe 5s ease-in-out infinite;
 }
 
-.logo-orbit img { border-radius: 24px; }
+.logo-orbit img { border-radius: 20px; }
 
 .eyebrow {
   margin: 0 0 0.8rem;
@@ -177,13 +178,13 @@ h1, h2, h3 {
 }
 
 h1 {
-  max-width: 870px;
-  font-size: 5.2rem;
-  line-height: 0.94;
+  max-width: 680px;
+  font-size: clamp(2.75rem, 4.45vw, 3.95rem);
+  line-height: 1;
 }
 
 h2 {
-  font-size: 4rem;
+  font-size: clamp(2.55rem, 4.4vw, 3.55rem);
   line-height: 0.98;
 }
 
@@ -196,9 +197,9 @@ h2 {
 }
 
 .hero-story > p:not(.eyebrow) {
-  max-width: 34rem;
-  margin: 1.1rem 0 0;
-  font-size: 1.2rem;
+  max-width: 31rem;
+  margin: 0.9rem 0 0;
+  font-size: 1.08rem;
 }
 
 .actions {
@@ -235,14 +236,14 @@ h2 {
 }
 
 .hero-previews {
-  min-height: 32rem;
+  min-height: 23.5rem;
   position: relative;
 }
 
 .preview-card {
   position: absolute;
-  width: min(18rem, 72vw);
-  padding: 1rem;
+  width: min(14.2rem, 72vw);
+  padding: 0.82rem;
   border: 1px solid rgba(255, 247, 232, 0.16);
   border-radius: 30px;
   background: rgba(255, 247, 232, 0.12);
@@ -257,8 +258,8 @@ h2 {
 }
 
 .preview-card img {
-  width: 4.2rem;
-  height: 4.2rem;
+  width: 3.55rem;
+  height: 3.55rem;
   object-fit: cover;
   border: 6px solid rgba(255, 247, 232, 0.8);
   border-radius: 20px;
@@ -267,7 +268,7 @@ h2 {
 
 .preview-card span {
   display: block;
-  margin-top: 1rem;
+  margin-top: 0.75rem;
   color: var(--gold);
   font-size: 0.74rem;
   font-weight: 950;
@@ -279,19 +280,20 @@ h2 {
   display: block;
   margin-top: 0.35rem;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.75rem;
+  font-size: 1.45rem;
   font-weight: 400;
 }
 
 .preview-card p {
   margin: 0.45rem 0 0;
   color: rgba(255, 247, 232, 0.78);
+  font-size: 0.94rem;
   line-height: 1.5;
 }
 
 .preview-ftb { right: 9%; top: 0; }
-.preview-cook { left: 0; top: 8rem; }
-.preview-career { right: 0; top: 15.5rem; }
+.preview-cook { left: 0; top: 5.9rem; }
+.preview-career { right: 0; top: 11.6rem; }
 .preview-beu { left: 18%; bottom: 0; }
 
 .scroll-cue {
@@ -548,6 +550,11 @@ h2 {
     #fffdf7;
 }
 
+.anchor-target {
+  position: absolute;
+  top: -5.5rem;
+}
+
 .live-apps .section-heading {
   max-width: 58rem;
   margin-bottom: 2rem;
@@ -750,20 +757,20 @@ h2 {
     flex-direction: column;
   }
 
-  .brand { width: 5rem; }
+  .brand { width: 4.5rem; }
   nav { justify-content: flex-start; }
   nav a { padding: 0.56rem 0.72rem; }
 
   .cinematic {
     min-height: auto;
-    padding-top: 2rem;
-    padding-bottom: 3.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
   }
 
-  h1 { font-size: 3.05rem; }
-  h2 { font-size: 2.45rem; }
+  h1 { font-size: 2.75rem; }
+  h2 { font-size: 2.3rem; }
 
-  .logo-orbit { width: 7rem; }
+  .logo-orbit { width: 6.1rem; }
 
   .hero-previews {
     min-height: 0;
