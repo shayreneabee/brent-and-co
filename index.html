@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Brent & Co.</title>
-    <meta name="description" content="Brent & Co. is a warm, creative ecosystem connecting cooking, music, culture, and career support." />
+    <meta name="description" content="Brent & Co. is a growing family of warm, practical apps for music, culture, careers, cooking, and community." />
     <meta name="theme-color" content="#2c1a10" />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -14,125 +14,172 @@
         <img src="assets/brent-co-logo.svg" alt="Brent & Co." />
       </a>
       <nav aria-label="Main navigation">
-        <a href="#platforms">Platforms</a>
-        <a href="#links">Launch Links</a>
-        <a href="#about">About</a>
+        <a href="#apps">Apps</a>
+        <a href="#featured">Featured</a>
+        <a href="#story">Story</a>
       </nav>
     </header>
 
     <main id="home">
-      <section class="hero">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-glow" aria-hidden="true"></div>
         <div class="hero-copy">
           <img class="wordmark" src="assets/brent-co-wordmark.png" alt="Brent & Co." />
-          <p class="eyebrow">Warm tools for real community life</p>
-          <h1>One umbrella for cooking, culture, music, and second chances.</h1>
+          <p class="eyebrow">A warm tech studio for real life</p>
+          <h1 id="hero-title">Built with heart. Designed for real life.</h1>
           <p>
-            Brent & Co. connects practical, creative platforms that help people learn,
-            discover, gather, rebuild, and feel at home wherever they are.
+            Brent &amp; Co is a growing family of apps for music, culture, careers,
+            cooking, and community.
           </p>
           <div class="actions">
-            <a class="button" href="#platforms">Explore the Platforms</a>
-            <a class="button secondary" href="#links">Launch Links</a>
+            <a class="button" href="#apps">Explore the Apps</a>
+            <a class="button secondary" href="https://findthebeatmusic.com/" target="_blank" rel="noreferrer">Visit Find the Beat</a>
           </div>
         </div>
-        <div class="hero-panel" aria-label="Brent and Co platform highlights">
-          <span>Let’s Cook Ya’ll</span>
-          <span>Find the Beat</span>
-          <span>BEU</span>
-          <span>Second Chance Careers</span>
-        </div>
-      </section>
 
-      <section class="section" id="platforms">
-        <div class="section-heading">
-          <p class="eyebrow">Brent & Co. platforms</p>
-          <h2>Choose where you want to go</h2>
-          <p>Each platform has its own personality, but they all belong to the same Brent & Co. family.</p>
-        </div>
-        <div class="platform-grid">
-          <article class="platform-card gold" id="lets-cook-card">
-            <img src="assets/lets-cook-logo.png" alt="" />
-            <span>Cooking confidence</span>
-            <h3>Let’s Cook Ya’ll</h3>
-            <p>A warm cooking-skills app for recipes, Cook 101 lessons, Shay’s Kitchen, meal planning, and hosting.</p>
-            <div class="card-actions">
-              <a class="button" href="https://letscookyall.com/" target="_blank" rel="noreferrer">Launch Let’s Cook</a>
-            </div>
-          </article>
-
-          <article class="platform-card orange" id="find-the-beat-card">
-            <img src="assets/find-the-beat-logo.svg" alt="" />
-            <span>Music energy</span>
-            <h3>Find the Beat</h3>
-            <p>A creative music platform for discovery, community rhythm, artists, events, and culture through sound.</p>
-            <div class="card-actions">
-              <a class="button" href="https://findthebeatmusic.com/" target="_blank" rel="noreferrer">Launch Find the Beat</a>
-            </div>
-          </article>
-
-          <article class="platform-card blue" id="beu-card">
-            <img src="assets/beu-logo.jpg" alt="" />
-            <span>Cultural compass</span>
-            <h3>BEU</h3>
-            <p>A global, location-aware cultural compass for Black-owned places, events, food, community, and travel.</p>
-            <div class="card-actions">
-              <a class="button" href="https://beutravel.org/" target="_blank" rel="noreferrer">Launch BEU</a>
-            </div>
-          </article>
-
-          <article class="platform-card career" id="second-chance-card">
-            <img src="assets/second-chance-logo.svg" alt="" />
-            <span>Career support</span>
-            <h3>Second Chance Careers</h3>
-            <p>A practical, supportive career platform for jobs, training, resumes, resources, and rebuilding with dignity.</p>
-            <div class="card-actions">
-              <a class="button" href="https://secondchancecareers.org/" target="_blank" rel="noreferrer">Launch Second Chance</a>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="section link-section" id="links">
-        <div class="section-heading">
-          <p class="eyebrow">Public launch links</p>
-          <h2>Deployment destinations</h2>
-          <p>Source code links are intentionally kept off the public homepage. Only confirmed current app doors are linked here.</p>
-        </div>
-        <div class="link-grid status-grid">
-          <article class="status-card gold">
-            <strong>Let’s Cook Ya’ll</strong>
-            <a href="https://letscookyall.com/" target="_blank" rel="noreferrer">letscookyall.com</a>
-          </article>
-          <article class="status-card orange">
+        <div class="hero-stack" aria-label="Brent and Co app highlights">
+          <article class="mini-card flagship">
+            <span>Flagship</span>
             <strong>Find the Beat</strong>
-            <a href="https://findthebeatmusic.com/" target="_blank" rel="noreferrer">findthebeatmusic.com</a>
+            <p>Creators, collaborators, profiles, performances, and music connections.</p>
           </article>
-          <article class="status-card blue">
+          <article class="mini-card">
+            <span>Community</span>
             <strong>BEU</strong>
-            <a href="https://beutravel.org/" target="_blank" rel="noreferrer">beutravel.org</a>
+            <p>Culture, places, events, discovery, and belonging wherever you are.</p>
           </article>
-          <article class="status-card career">
+          <article class="mini-card">
+            <span>Care</span>
             <strong>Second Chance Careers</strong>
-            <a href="https://secondchancecareers.org/" target="_blank" rel="noreferrer">secondchancecareers.org</a>
+            <p>A practical path for rebuilding confidence, resumes, and next steps.</p>
           </article>
         </div>
       </section>
 
-      <section class="section story-section" id="about">
-        <p class="eyebrow">The umbrella</p>
-        <h2>Modern, welcoming, creative, and practical.</h2>
-        <p>
-          Brent & Co. is the front porch for the whole ecosystem. It should be the domain
-          people remember, while each product gets its own dedicated app, repo, and deployment.
-        </p>
+      <section class="section app-showcase" id="apps">
+        <div class="section-heading">
+          <p class="eyebrow">The Brent &amp; Co family</p>
+          <h2>Four apps, each with its own heartbeat.</h2>
+          <p>Each product has a clear purpose, a warm door in, and a dedicated live app.</p>
+        </div>
+
+        <div class="app-grid">
+          <article class="app-card find">
+            <div class="card-topline">
+              <img src="assets/find-the-beat-logo.svg" alt="" />
+              <span class="badge">Flagship</span>
+            </div>
+            <p class="app-kicker">Where creators find their sound.</p>
+            <h3>Find the Beat</h3>
+            <p>
+              A music networking platform for artists, producers, musicians,
+              songwriters, and engineers. Create a profile, upload performances,
+              browse collaborators, and start real conversations.
+            </p>
+            <a class="button" href="https://findthebeatmusic.com/" target="_blank" rel="noreferrer">Visit Find the Beat</a>
+          </article>
+
+          <article class="app-card career">
+            <div class="card-topline">
+              <img src="assets/second-chance-logo.svg" alt="" />
+            </div>
+            <p class="app-kicker">A clearer path forward.</p>
+            <h3>Second Chance Careers</h3>
+            <p>
+              A supportive career app for people rebuilding with dignity.
+              Users can find resources, follow a path, prepare resumes, and
+              move toward work with more confidence.
+            </p>
+            <a class="button" href="https://secondchancecareers.org/" target="_blank" rel="noreferrer">Visit Second Chance</a>
+          </article>
+
+          <article class="app-card cook">
+            <div class="card-topline">
+              <img src="assets/lets-cook-logo.png" alt="" />
+            </div>
+            <p class="app-kicker">Cook. Learn. Grow.</p>
+            <h3>Let’s Cook Y’all</h3>
+            <p>
+              A cozy cooking and learning space for recipes, lessons, kitchen
+              confidence, and food videos. It feels like encouragement at the
+              counter while you learn something useful.
+            </p>
+            <a class="button" href="https://letscookyall.com/" target="_blank" rel="noreferrer">Visit Let’s Cook</a>
+          </article>
+
+          <article class="app-card beu">
+            <div class="card-topline">
+              <img src="assets/beu-logo.jpg" alt="" />
+            </div>
+            <p class="app-kicker">Discover the culture around you.</p>
+            <h3>BEU</h3>
+            <p>
+              A culture and travel discovery app for places, events, food,
+              reviews, and community finds. Built to help people explore with
+              intention and feel connected where they are.
+            </p>
+            <a class="button" href="https://beutravel.org/" target="_blank" rel="noreferrer">Visit BEU</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="featured-section" id="featured">
+        <div class="featured-inner">
+          <div>
+            <p class="eyebrow">Current flagship</p>
+            <h2>Featured Platform: Find the Beat</h2>
+            <p>
+              Find the Beat helps musicians, producers, singers, songwriters,
+              and creatives build profiles, discover collaborators, upload
+              performances, and connect through music.
+            </p>
+            <div class="actions">
+              <a class="button" href="https://findthebeatmusic.com/signup" target="_blank" rel="noreferrer">Join the Network</a>
+              <a class="button secondary" href="https://findthebeatmusic.com/profiles" target="_blank" rel="noreferrer">Browse Creators</a>
+            </div>
+          </div>
+          <div class="featured-card" aria-hidden="true">
+            <span>♪</span>
+            <strong>Profiles</strong>
+            <strong>Performances</strong>
+            <strong>Messages</strong>
+            <strong>Discovery</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="section story-section" id="story">
+        <div class="section-heading">
+          <p class="eyebrow">The mission</p>
+          <h2>One studio. Four paths. One mission.</h2>
+          <p>
+            Brent &amp; Co brings creative connection, career rebuilding, food
+            and learning, and cultural discovery into one family of products.
+            The apps are different on purpose, but they share the same heart:
+            helping real people feel supported, seen, and ready for the next step.
+          </p>
+        </div>
+        <div class="story-grid">
+          <div><span>01</span><strong>Creative connection</strong></div>
+          <div><span>02</span><strong>Career rebuilding</strong></div>
+          <div><span>03</span><strong>Food and learning</strong></div>
+          <div><span>04</span><strong>Cultural discovery</strong></div>
+        </div>
       </section>
     </main>
 
-    <footer class="ecosystem-footer" aria-label="Brent and Co platform shortcuts">
-      <a class="ecosystem-icon gold" href="https://letscookyall.com/" target="_blank" rel="noreferrer" aria-label="Launch Let's Cook Ya'll">LC</a>
-      <a class="ecosystem-icon orange" href="https://findthebeatmusic.com/" target="_blank" rel="noreferrer" aria-label="Launch Find the Beat">FTB</a>
-      <a class="ecosystem-icon blue" href="https://beutravel.org/" target="_blank" rel="noreferrer" aria-label="Launch BEU">BEU</a>
-      <a class="ecosystem-icon career" href="https://secondchancecareers.org/" target="_blank" rel="noreferrer" aria-label="Launch Second Chance Careers">SC</a>
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <strong>Brent &amp; Co</strong>
+        <span>To Scooter, with love.</span>
+      </div>
+      <div class="footer-links" aria-label="Brent and Co app links">
+        <a href="https://findthebeatmusic.com/" target="_blank" rel="noreferrer">Find the Beat</a>
+        <a href="https://secondchancecareers.org/" target="_blank" rel="noreferrer">Second Chance Careers</a>
+        <a href="https://letscookyall.com/" target="_blank" rel="noreferrer">Let’s Cook Y’all</a>
+        <a href="https://beutravel.org/" target="_blank" rel="noreferrer">BEU</a>
+      </div>
+      <p>© 2026 Brent &amp; Co. All love, all forward.</p>
     </footer>
   </body>
 </html>
