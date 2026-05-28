@@ -597,6 +597,27 @@ h2 {
   line-height: 1.45;
 }
 
+.homage {
+  padding: 2.5rem 1rem 4.5rem;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(239, 189, 90, 0.24), transparent 18rem),
+    #fffdf7;
+}
+
+.homage p {
+  width: min(48rem, 100%);
+  margin: 0 auto;
+  padding: 1.6rem;
+  border-radius: 34px;
+  background: rgba(255, 247, 232, 0.74);
+  box-shadow: var(--soft-shadow);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2.65rem;
+  line-height: 1;
+}
+
 .site-footer {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(18rem, 0.8fr);
@@ -779,6 +800,10 @@ h2 {
 
   .app-links {
     grid-template-columns: 1fr;
+  }
+
+  .homage p {
+    font-size: 2rem;
   }
 
   .newsletter div,
