@@ -377,15 +377,13 @@ h2 {
 
 .preview-ftb,
 .preview-cook,
-.preview-career,
-.preview-beu {
+.preview-career {
   inset: auto;
 }
 
 .preview-ftb { --preview-image: url("assets/editorial-music-collab.jpg"); }
 .preview-cook { --preview-image: url("assets/editorial-cooking-hero.jpg"); }
 .preview-career { --preview-image: url("assets/editorial-career-support.jpg"); }
-.preview-beu { --preview-image: url("assets/editorial-culture-travel.jpg"); }
 
 .scroll-cue {
   position: absolute;
@@ -556,12 +554,6 @@ h2 {
   background:
     radial-gradient(circle at 20% 22%, rgba(78, 143, 215, 0.22), transparent 18rem),
     linear-gradient(135deg, #ecf9f2, #f8fff8);
-}
-
-.beu-panel {
-  background:
-    radial-gradient(circle at 78% 22%, rgba(78, 143, 215, 0.32), transparent 20rem),
-    linear-gradient(135deg, #eaf5ff, #f8fbff);
 }
 
 .recipe-float,
