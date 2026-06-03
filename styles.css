@@ -761,6 +761,88 @@ h2 {
   font-weight: 800;
 }
 
+.identity-foundation {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.55fr);
+  gap: clamp(1rem, 3vw, 1.5rem);
+  width: min(1080px, calc(100% - 2rem));
+  margin: 0 auto 2rem;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  border: 1px solid rgba(95, 74, 63, 0.12);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 8% 0%, rgba(239, 189, 90, 0.22), transparent 18rem),
+    #fff8ec;
+  box-shadow: 0 22px 58px rgba(43, 26, 18, 0.1);
+}
+
+.identity-foundation h2 {
+  margin: 0.15rem 0 0.55rem;
+  color: #2b1a12;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 0.98;
+}
+
+.identity-foundation p:not(.eyebrow) {
+  max-width: 46rem;
+  color: #5f4a3f;
+  line-height: 1.6;
+}
+
+.identity-card {
+  display: grid;
+  gap: 0.75rem;
+  align-content: center;
+  padding: 1rem;
+  border: 1px solid #e7d8bf;
+  border-radius: 26px;
+  background: #fffaf3;
+}
+
+.identity-avatar {
+  width: 4.5rem;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: 3px solid #e7d8bf;
+  border-radius: 50%;
+  color: #2b1a12;
+  background:
+    radial-gradient(circle at 28% 24%, rgba(239, 189, 90, 0.46), transparent 38%),
+    #fff8ec;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+
+.identity-card strong {
+  color: #2b1a12;
+  font-size: 1.35rem;
+}
+
+.identity-card span,
+.auth-buttons button {
+  color: #5f4a3f;
+}
+
+.auth-buttons {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
+  gap: 0.75rem;
+}
+
+.auth-buttons button {
+  min-height: 3rem;
+  border: 1px solid #e7d8bf;
+  border-radius: 999px;
+  background: #fffaf3;
+  font-weight: 900;
+  cursor: not-allowed;
+  opacity: 0.72;
+}
+
 .homage {
   padding: 2.5rem 1rem 4.5rem;
   text-align: center;
@@ -1012,6 +1094,15 @@ h2 {
   .founder-profile {
     grid-template-columns: 1fr;
     text-align: center;
+  }
+
+  .identity-foundation,
+  .auth-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .identity-avatar {
+    margin: 0 auto;
   }
 
   .founder-mark {
