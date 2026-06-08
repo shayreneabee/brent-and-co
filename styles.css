@@ -44,13 +44,17 @@ img { display: block; max-width: 100%; }
 }
 
 .brand {
-  width: 4.85rem;
+  width: clamp(9.5rem, 18vw, 15.5rem);
   display: inline-flex;
+  align-items: center;
 }
 
 .brand img {
-  border-radius: 20px;
-  box-shadow: var(--soft-shadow);
+  width: 100%;
+  max-height: 4.35rem;
+  object-fit: contain;
+  border-radius: 16px;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.18);
 }
 
 nav {
@@ -164,7 +168,12 @@ nav a:hover::after { transform: scaleX(1); }
   animation: breathe 5s ease-in-out infinite;
 }
 
-.logo-orbit img { border-radius: 20px; }
+.logo-orbit img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 18px;
+}
 
 .hero-kicker {
   display: flex;
@@ -184,6 +193,14 @@ nav a:hover::after { transform: scaleX(1); }
   font-weight: 850;
 }
 
+.hero-brand-lockup {
+  width: min(100%, 36rem);
+  margin: 0 0 1rem;
+  border: 1px solid rgba(239, 189, 90, 0.24);
+  border-radius: 24px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.26);
+}
+
 .banner-message {
   width: min(100%, 28rem);
   display: flex;
@@ -199,6 +216,8 @@ nav a:hover::after { transform: scaleX(1); }
 
 .banner-message img {
   width: 2.45rem;
+  aspect-ratio: 1;
+  object-fit: cover;
   border-radius: 14px;
 }
 
@@ -384,6 +403,26 @@ h2 {
 .preview-ftb { --preview-image: url("assets/editorial-music-collab.jpg"); }
 .preview-cook { --preview-image: url("assets/editorial-cooking-hero.jpg"); }
 .preview-career { --preview-image: url("assets/editorial-career-support.jpg"); }
+
+.brand-showcase-card {
+  grid-column: 1 / -1;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  border: 1px solid rgba(239, 189, 90, 0.24);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(239, 189, 90, 0.18), transparent 16rem),
+    rgba(2, 17, 35, 0.62);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.26);
+}
+
+.brand-showcase-card img {
+  width: min(100%, 22rem);
+  max-height: 14rem;
+  object-fit: contain;
+  border-radius: 24px;
+}
 
 .scroll-cue {
   position: absolute;
@@ -711,10 +750,13 @@ h2 {
   border-radius: 28px;
   background: rgba(255, 247, 232, 0.92);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
 .founder-mark img {
-  width: 78%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .founder-copy h2 {
@@ -814,6 +856,13 @@ h2 {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.4rem;
   font-weight: 900;
+  overflow: hidden;
+}
+
+.identity-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .identity-card strong {
@@ -881,6 +930,8 @@ h2 {
 
 .footer-mark img {
   width: 5.5rem;
+  aspect-ratio: 1;
+  object-fit: cover;
   border-radius: 22px;
 }
 
@@ -1029,7 +1080,7 @@ h2 {
     flex-direction: column;
   }
 
-  .brand { width: 4.5rem; }
+  .brand { width: min(13rem, 62vw); }
   nav { justify-content: flex-start; }
   nav a { padding: 0.56rem 0.72rem; }
 
