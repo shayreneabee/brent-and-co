@@ -871,7 +871,8 @@ h2 {
 }
 
 .identity-card span,
-.auth-buttons button {
+.auth-buttons button,
+.auth-buttons a {
   color: #5f4a3f;
 }
 
@@ -882,12 +883,20 @@ h2 {
   gap: 0.75rem;
 }
 
-.auth-buttons button {
+.auth-buttons button,
+.auth-buttons a {
   min-height: 3rem;
   border: 1px solid #e7d8bf;
   border-radius: 999px;
   background: #fffaf3;
   font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.auth-buttons button {
   cursor: not-allowed;
   opacity: 0.72;
 }
