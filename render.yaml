@@ -1,5 +1,28 @@
 services:
-  - type: static
+  - type: web
     name: brent-and-co
-    buildCommand: ""
-    staticPublishPath: .
+    env: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 2 --threads 4 --timeout 120
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: SSO_SHARED_SECRET
+        generateValue: true
+      - key: BRENT_PUBLIC_URL
+        sync: false
+      - key: BRENT_OWNER_EMAIL
+        sync: false
+      - key: FIND_THE_BEAT_SSO_CONSUME_URL
+        sync: false
+      - key: LETS_COOK_SSO_CONSUME_URL
+        sync: false
+      - key: SECOND_CHANCE_SSO_CONSUME_URL
+        sync: false

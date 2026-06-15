@@ -742,6 +742,102 @@ h2 {
   margin: 0 auto;
 }
 
+.mission-values {
+  width: min(var(--container), calc(100% - 2rem));
+  margin: 2rem auto;
+  padding: clamp(1.1rem, 4vw, 2rem);
+  border: 1px solid rgba(255, 247, 232, 0.18);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 88% 10%, rgba(242, 196, 91, 0.2), transparent 18rem),
+    linear-gradient(135deg, rgba(7, 20, 38, 0.92), rgba(32, 55, 74, 0.82));
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.22);
+}
+
+.mv-header {
+  max-width: 54rem;
+  margin-bottom: 1.2rem;
+}
+
+.mv-header h2 {
+  margin: 0.15rem 0 0.55rem;
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 0.98;
+}
+
+.mv-header p:not(.eyebrow),
+.mv-tagline {
+  color: rgba(255, 247, 232, 0.78);
+}
+
+.mv-tagline {
+  display: inline-flex;
+  width: fit-content;
+  margin: 0.35rem 0 0;
+  padding: 0.55rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(242, 196, 91, 0.14);
+  color: #f2c45b;
+  font-weight: 900;
+}
+
+.mv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.mv-card {
+  display: grid;
+  gap: 0.65rem;
+  padding: clamp(1rem, 3vw, 1.35rem);
+  border: 1px solid rgba(255, 247, 232, 0.16);
+  border-radius: 26px;
+  background: rgba(255, 247, 232, 0.08);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.14);
+}
+
+.mv-card span {
+  color: #f2c45b;
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.mv-card h3 {
+  margin: 0;
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  line-height: 1.05;
+}
+
+.mv-card p {
+  margin: 0;
+  color: rgba(255, 247, 232, 0.76);
+  line-height: 1.6;
+}
+
+.value-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.value-list div {
+  padding: 0.8rem;
+  border-radius: 18px;
+  background: rgba(255, 247, 232, 0.08);
+}
+
+.value-list strong {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: var(--cream);
+}
+
 .founder-profile {
   display: grid;
   grid-template-columns: minmax(14rem, 22rem) minmax(0, 1fr);
@@ -1443,6 +1539,14 @@ h2 {
   .founder-profile {
     grid-template-columns: 1fr;
     text-align: center;
+  }
+
+  .mv-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-values {
+    border-radius: 28px;
   }
 
   .founder-page {
