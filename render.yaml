@@ -16,6 +16,8 @@ services:
         generateValue: true
       - key: SSO_SHARED_SECRET
         generateValue: true
+      - key: DEBUG_SSO
+        value: "0"
       - key: BRENT_PUBLIC_URL
         sync: false
       - key: BRENT_OWNER_EMAIL

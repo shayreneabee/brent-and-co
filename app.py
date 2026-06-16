@@ -25,6 +25,7 @@ GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET", "")
 SESSION_SECRET = os.getenv("SESSION_SECRET") or os.getenv("SECRET_KEY") or "dev-session-change-me"
 SSO_SHARED_SECRET = os.getenv("SSO_SHARED_SECRET", "dev-sso-change-me")
 SSO_TOKEN_SECONDS = int(os.getenv("SSO_TOKEN_SECONDS", "300"))
+DEBUG_SSO = os.getenv("DEBUG_SSO", "").strip().lower() in {"1", "true", "yes", "on"}
 BRENT_PUBLIC_URL = os.getenv("BRENT_PUBLIC_URL", "https://brentandco.org").rstrip("/")
 
 APP_SSO_TARGETS = {
@@ -47,6 +48,19 @@ FOUNDER_EMAIL = os.getenv("BRENT_OWNER_EMAIL", "shalanda.brent@gmail.com").strip
 app = Flask(__name__, static_folder=None)
 app.secret_key = SESSION_SECRET
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_port=1)
+
+
+def log_sso_debug(event, app_name="", callback_url=""):
+    if not DEBUG_SSO:
+        return
+    app.logger.info(
+        "SSO %s app=%s BRENT_PUBLIC_URL=%s SSO_SHARED_SECRET_PRESENT=%s callback=%s",
+        event,
+        app_name,
+        BRENT_PUBLIC_URL,
+        bool(SSO_SHARED_SECRET),
+        callback_url,
+    )
 
 
 class Database:
@@ -413,6 +427,7 @@ def sso_start():
     next_path = safe_relative_next(request.args.get("next"), target["default_next"])
     token = make_sso_token(user, app_name)
     separator = "&" if "?" in target["callback"] else "?"
+    log_sso_debug("handoff", app_name=app_name, callback_url=target["callback"])
     return redirect(f"{target['callback']}{separator}{urlencode({'token': token, 'next': next_path})}")
 
 
