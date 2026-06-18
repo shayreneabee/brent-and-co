@@ -20,25 +20,25 @@ DB_PATH = Path(os.getenv("DATABASE_PATH", INSTANCE_DIR / "brent_identity.db"))
 DATABASE_URL = os.getenv("DATABASE_URL", "").strip()
 USE_POSTGRES = DATABASE_URL.startswith(("postgres://", "postgresql://"))
 
-GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID", "")
-GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET", "")
+GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID", "").strip()
+GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET", "").strip()
 SESSION_SECRET = os.getenv("SESSION_SECRET") or os.getenv("SECRET_KEY") or "dev-session-change-me"
-SSO_SHARED_SECRET = os.getenv("SSO_SHARED_SECRET", "dev-sso-change-me")
+SSO_SHARED_SECRET = os.getenv("SSO_SHARED_SECRET", "dev-sso-change-me").strip()
 SSO_TOKEN_SECONDS = int(os.getenv("SSO_TOKEN_SECONDS", "300"))
 DEBUG_SSO = os.getenv("DEBUG_SSO", "").strip().lower() in {"1", "true", "yes", "on"}
 BRENT_PUBLIC_URL = os.getenv("BRENT_PUBLIC_URL", "https://brentandco.org").rstrip("/")
 
 APP_SSO_TARGETS = {
     "find-the-beat": {
-        "callback": os.getenv("FIND_THE_BEAT_SSO_CONSUME_URL", "https://findthebeatmusic.com/sso/consume"),
+        "callback": os.getenv("FIND_THE_BEAT_SSO_CONSUME_URL", "https://www.findthebeatmusic.com/sso/consume").strip(),
         "default_next": "/profile",
     },
     "lets-cook": {
-        "callback": os.getenv("LETS_COOK_SSO_CONSUME_URL", "https://letscookyall.com/sso/consume"),
+        "callback": os.getenv("LETS_COOK_SSO_CONSUME_URL", "https://letscookyall.com/sso/consume").strip(),
         "default_next": "/#account",
     },
     "second-chance": {
-        "callback": os.getenv("SECOND_CHANCE_SSO_CONSUME_URL", "https://secondchancecareers.org/sso/consume"),
+        "callback": os.getenv("SECOND_CHANCE_SSO_CONSUME_URL", "https://secondchancecareers.org/sso/consume").strip(),
         "default_next": "/second-chance/profile",
     },
 }
