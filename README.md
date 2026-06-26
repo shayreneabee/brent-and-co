@@ -27,14 +27,25 @@ Required Render environment variables for Brent & Co:
 - `GOOGLE_CLIENT_ID`: Google OAuth web client ID
 - `GOOGLE_CLIENT_SECRET`: Google OAuth web client secret
 - `SESSION_SECRET`: long random Flask session secret
+- `SESSION_COOKIE_SECURE`: `1` in production
+- `SESSION_COOKIE_SAMESITE`: `Lax`
+- `SESSION_COOKIE_DOMAIN`: optional; use `.brentandco.org` only if you intentionally need cookies shared by `brentandco.org` and `www.brentandco.org`
 - `SSO_SHARED_SECRET`: long random shared token-signing secret; must match every connected app
 - `SSO_TOKEN_SECONDS`: optional, defaults to `300`
-- `BRENT_PUBLIC_URL`: `https://brentandco.org`
+- `BRENT_PUBLIC_URL`: canonical Brent identity URL, for example `https://www.brentandco.org`
+- `GOOGLE_REDIRECT_URI`: optional override; if set, use the matching canonical URI, for example `https://www.brentandco.org/auth/google/callback`
 - `FIND_THE_BEAT_SSO_CONSUME_URL`: `https://findthebeatmusic.com/sso/consume`
 - `LETS_COOK_SSO_CONSUME_URL`: `https://letscookyall.com/sso/consume`
 - `SECOND_CHANCE_SSO_CONSUME_URL`: `https://secondchancecareers.org/sso/consume`
 
 If `DATABASE_URL` is present, Brent & Co uses PostgreSQL. If it is missing, local development falls back to SQLite at `instance/brent_identity.db`.
+
+OAuth state/session notes:
+
+- Start Google OAuth only on Brent & Co.
+- Child apps should redirect to `BRENT_SSO_URL`, then Brent should start Google OAuth.
+- Keep `BRENT_PUBLIC_URL`, Google redirect URI, and the active Brent domain aligned so OAuth starts and callbacks land on the same Brent host.
+- Keep `SESSION_SECRET` stable across deploys. Changing it invalidates pending OAuth state and sessions.
 
 Required Render environment variables for Find The Beat, Let's Cook Ya'll, and Second Chance Careers:
 
@@ -75,7 +86,7 @@ Render deployment order:
 
 1. Create Render PostgreSQL.
 2. Create Brent & Co Web Service.
-3. Add `DATABASE_URL`, Google OAuth variables, `SESSION_SECRET`, and `SSO_SHARED_SECRET` to Brent & Co.
+3. Add `DATABASE_URL`, Google OAuth variables, `SESSION_SECRET`, cookie settings, `BRENT_PUBLIC_URL`, and `SSO_SHARED_SECRET` to Brent & Co.
 4. Deploy Brent & Co and confirm `/login`, `/auth/google`, `/auth/google/callback`, `/sso/start`, and `/admin` exist.
 5. Add the same `SSO_SHARED_SECRET` and `BRENT_SSO_URL=https://brentandco.org/sso/start` to Find The Beat, Let's Cook Ya'll, and Second Chance Careers.
 6. Deploy child apps.

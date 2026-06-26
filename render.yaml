@@ -14,11 +14,19 @@ services:
         sync: false
       - key: SESSION_SECRET
         generateValue: true
+      - key: SESSION_COOKIE_SECURE
+        value: "1"
+      - key: SESSION_COOKIE_SAMESITE
+        value: Lax
+      - key: SESSION_COOKIE_DOMAIN
+        sync: false
       - key: SSO_SHARED_SECRET
         generateValue: true
       - key: DEBUG_SSO
         value: "0"
       - key: BRENT_PUBLIC_URL
+        sync: false
+      - key: GOOGLE_REDIRECT_URI
         sync: false
       - key: BRENT_OWNER_EMAIL
         sync: false

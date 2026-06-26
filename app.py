@@ -6,8 +6,9 @@ import os
 import secrets
 import sqlite3
 import time
+import base64
 from pathlib import Path
-from urllib.parse import urlencode
+from urllib.parse import urlencode, urlsplit, urlunsplit
 from urllib.request import Request, urlopen
 
 from flask import Flask, flash, redirect, request, send_from_directory, session, url_for
@@ -27,6 +28,8 @@ SSO_SHARED_SECRET = os.getenv("SSO_SHARED_SECRET", "dev-sso-change-me").strip()
 SSO_TOKEN_SECONDS = int(os.getenv("SSO_TOKEN_SECONDS", "300"))
 DEBUG_SSO = os.getenv("DEBUG_SSO", "").strip().lower() in {"1", "true", "yes", "on"}
 BRENT_PUBLIC_URL = os.getenv("BRENT_PUBLIC_URL", "https://brentandco.org").rstrip("/")
+BRENT_PUBLIC_PARTS = urlsplit(BRENT_PUBLIC_URL)
+BRENT_PUBLIC_HOST = BRENT_PUBLIC_PARTS.netloc.lower()
 
 APP_SSO_TARGETS = {
     "find-the-beat": {
@@ -47,6 +50,17 @@ FOUNDER_EMAIL = os.getenv("BRENT_OWNER_EMAIL", "shalanda.brent@gmail.com").strip
 
 app = Flask(__name__, static_folder=None)
 app.secret_key = SESSION_SECRET
+app.config.update(
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SECURE=os.getenv(
+        "SESSION_COOKIE_SECURE",
+        "1" if BRENT_PUBLIC_URL.startswith("https://") else "0",
+    ).strip().lower() in {"1", "true", "yes", "on"},
+    SESSION_COOKIE_SAMESITE=os.getenv("SESSION_COOKIE_SAMESITE", "Lax"),
+)
+session_cookie_domain = os.getenv("SESSION_COOKIE_DOMAIN", "").strip()
+if session_cookie_domain:
+    app.config["SESSION_COOKIE_DOMAIN"] = session_cookie_domain
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_port=1)
 
 
@@ -61,6 +75,23 @@ def log_sso_debug(event, app_name="", callback_url=""):
         bool(SSO_SHARED_SECRET),
         callback_url,
     )
+
+
+def log_oauth_debug(event, **details):
+    if not DEBUG_SSO:
+        return
+    safe_details = " ".join(f"{key}={value}" for key, value in details.items())
+    app.logger.info("OAuth %s %s", event, safe_details)
+
+
+def canonical_url_for_current_request():
+    if not BRENT_PUBLIC_HOST:
+        return ""
+    current_host = request.host.lower()
+    if current_host == BRENT_PUBLIC_HOST or current_host.startswith("localhost") or current_host.startswith("127.0.0.1"):
+        return ""
+    parts = urlsplit(request.url)
+    return urlunsplit((BRENT_PUBLIC_PARTS.scheme or "https", BRENT_PUBLIC_HOST, parts.path, parts.query, parts.fragment))
 
 
 class Database:
@@ -166,6 +197,10 @@ def init_db():
 
 @app.before_request
 def ensure_db():
+    canonical_url = canonical_url_for_current_request()
+    if canonical_url and request.path.startswith(("/login", "/auth/", "/sso/start")):
+        log_oauth_debug("canonical_redirect", host=request.host, target=canonical_url)
+        return redirect(canonical_url, code=302)
     init_db()
 
 
@@ -300,6 +335,8 @@ def google_redirect_uri():
     configured = os.getenv("GOOGLE_REDIRECT_URI", "").strip()
     if configured:
         return configured
+    if BRENT_PUBLIC_URL and not request.host.startswith(("localhost", "127.0.0.1")):
+        return f"{BRENT_PUBLIC_URL}/auth/google/callback"
     scheme = "http" if request.host.startswith(("localhost", "127.0.0.1")) else "https"
     return url_for("google_callback", _external=True, _scheme=scheme)
 
@@ -351,6 +388,13 @@ def google_start():
     session["oauth_state"] = state
     session["post_auth_next"] = request.args.get("next") or "/"
     session["post_auth_app"] = request.args.get("app") or ""
+    log_oauth_debug(
+        "start",
+        host=request.host,
+        redirect_uri=google_redirect_uri(),
+        has_session_state=bool(session.get("oauth_state")),
+        app=session.get("post_auth_app") or "",
+    )
     params = {
         "client_id": GOOGLE_CLIENT_ID,
         "redirect_uri": google_redirect_uri(),
@@ -365,8 +409,21 @@ def google_start():
 
 @app.get("/auth/google/callback")
 def google_callback():
-    if request.args.get("state") != session.get("oauth_state"):
-        return "Invalid OAuth state. Please try signing in again.", 400
+    incoming_state = request.args.get("state")
+    expected_state = session.get("oauth_state")
+    if incoming_state != expected_state:
+        next_path = session.get("post_auth_next") or "/"
+        app_name = session.get("post_auth_app") or ""
+        log_oauth_debug(
+            "state_mismatch",
+            host=request.host,
+            session_state_present=bool(expected_state),
+            incoming_state_present=bool(incoming_state),
+            secure_cookie=app.config.get("SESSION_COOKIE_SECURE"),
+            samesite=app.config.get("SESSION_COOKIE_SAMESITE"),
+        )
+        session.clear()
+        return redirect(url_for("login", next=next_path, app=app_name))
     code = request.args.get("code")
     if not code:
         return "Google did not return an authorization code.", 400
@@ -400,6 +457,7 @@ def google_callback():
     next_path = session.get("post_auth_next") or "/"
     session.clear()
     session["user_id"] = user["id"]
+    log_oauth_debug("success", host=request.host, app=app_name, user_email=user["email"])
     if app_name:
         return redirect(url_for("sso_start", app=app_name, next=next_path))
     return redirect(safe_relative_next(next_path, "/"))
