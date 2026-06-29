@@ -13,6 +13,7 @@ from urllib.request import Request, urlopen
 
 from flask import Flask, flash, redirect, request, send_from_directory, session, url_for
 from werkzeug.middleware.proxy_fix import ProxyFix
+from werkzeug.security import check_password_hash, generate_password_hash
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -137,6 +138,7 @@ def init_db():
                 CREATE TABLE IF NOT EXISTS users (
                     id SERIAL PRIMARY KEY,
                     email TEXT NOT NULL UNIQUE,
+                    password_hash TEXT DEFAULT '',
                     display_name TEXT DEFAULT '',
                     profile_photo TEXT DEFAULT '',
                     auth_provider TEXT DEFAULT 'google',
@@ -168,6 +170,7 @@ def init_db():
                 CREATE TABLE IF NOT EXISTS users (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     email TEXT NOT NULL UNIQUE,
+                    password_hash TEXT DEFAULT '',
                     display_name TEXT DEFAULT '',
                     profile_photo TEXT DEFAULT '',
                     auth_provider TEXT DEFAULT 'google',
@@ -193,12 +196,26 @@ def init_db():
                 )
                 """
             )
+        try:
+            if USE_POSTGRES:
+                existing_columns = {
+                    row["column_name"]
+                    for row in conn.execute(
+                        "SELECT column_name FROM information_schema.columns WHERE table_name = 'users'"
+                    ).fetchall()
+                }
+            else:
+                existing_columns = {row["name"] for row in conn.execute("PRAGMA table_info(users)").fetchall()}
+            if "password_hash" not in existing_columns:
+                conn.execute("ALTER TABLE users ADD COLUMN password_hash TEXT DEFAULT ''")
+        except Exception:
+            app.logger.exception("Could not verify Brent users password_hash column")
 
 
 @app.before_request
 def ensure_db():
     canonical_url = canonical_url_for_current_request()
-    if canonical_url and request.path.startswith(("/login", "/auth/", "/sso/start")):
+    if canonical_url and request.path.startswith(("/login", "/signup", "/auth/", "/sso/start")):
         log_oauth_debug("canonical_redirect", host=request.host, target=canonical_url)
         return redirect(canonical_url, code=302)
     init_db()
@@ -229,6 +246,61 @@ def current_user():
         return None
     with get_db() as conn:
         return conn.execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone()
+
+
+def create_local_user(email, password, display_name):
+    email = (email or "").strip().lower()
+    display_name = (display_name or "").strip() or email.split("@")[0]
+    if not email or len(password or "") < 8:
+        raise ValueError("Email and an 8-character password are required.")
+    now = int(time.time())
+    is_founder = int(email == FOUNDER_EMAIL)
+    with get_db() as conn:
+        insert_sql = """
+            INSERT INTO users (
+                email, password_hash, display_name, profile_photo, auth_provider,
+                provider_user_id, is_admin, is_founder, created_at, last_login_at, updated_at
+            )
+            VALUES (?, ?, ?, '', 'local', '', ?, ?, ?, ?, ?)
+        """
+        params = (
+            email,
+            generate_password_hash(password),
+            display_name,
+            is_founder,
+            is_founder,
+            now,
+            now,
+            now,
+        )
+        if USE_POSTGRES:
+            inserted = conn.execute(f"{insert_sql} RETURNING id", params).fetchone()
+            user_id = inserted["id"]
+        else:
+            cursor = conn.execute(insert_sql, params)
+            user_id = cursor.lastrowid
+        return conn.execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone()
+
+
+def authenticate_local_user(email, password):
+    with get_db() as conn:
+        user = conn.execute(
+            "SELECT * FROM users WHERE lower(email) = lower(?)",
+            ((email or "").strip().lower(),),
+        ).fetchone()
+        if not user or not user["password_hash"] or not check_password_hash(user["password_hash"], password or ""):
+            return None
+        now = int(time.time())
+        conn.execute(
+            """
+            UPDATE users
+            SET auth_provider = COALESCE(NULLIF(auth_provider, ''), 'local'),
+                last_login_at = ?, updated_at = ?
+            WHERE id = ?
+            """,
+            (now, now, user["id"]),
+        )
+        return conn.execute("SELECT * FROM users WHERE id = ?", (user["id"],)).fetchone()
 
 
 def upsert_google_user(profile):
@@ -341,10 +413,23 @@ def google_redirect_uri():
     return url_for("google_callback", _external=True, _scheme=scheme)
 
 
-@app.get("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
     next_url = request.args.get("next") or "/"
     app_name = request.args.get("app", "")
+    if request.method == "POST":
+        user = authenticate_local_user(
+            request.form.get("email", ""),
+            request.form.get("password", ""),
+        )
+        if not user:
+            return redirect(url_for("login", next=next_url, app=app_name, error="invalid"))
+        session.clear()
+        session["user_id"] = user["id"]
+        if app_name:
+            return redirect(url_for("sso_start", app=app_name, next=next_url))
+        return redirect(safe_relative_next(next_url, "/"))
+    error_html = "<p class='auth-error'>Email or password did not match.</p>" if request.args.get("error") == "invalid" else ""
     body = f"""
     <!doctype html>
     <html lang="en">
@@ -361,6 +446,10 @@ def login():
         .auth-card p {{ color: #5c6472; line-height: 1.6; }}
         .auth-actions {{ display: grid; gap: 12px; margin-top: 24px; }}
         .auth-actions a {{ text-align: center; }}
+        .auth-form {{ display: grid; gap: 12px; margin-top: 24px; }}
+        .auth-form input {{ width: 100%; border: 1px solid rgba(17,24,39,.14); border-radius: 16px; padding: 14px 16px; font: inherit; }}
+        .auth-form button {{ border: 0; cursor: pointer; }}
+        .auth-error {{ color: #9f1239; font-weight: 800; }}
       </style>
     </head>
     <body>
@@ -368,9 +457,18 @@ def login():
         <img src="/assets/brent-co-profile.png" alt="Brent & Co">
         <p class="eyebrow">Brent & Co account</p>
         <h1>Sign in once. Use every app.</h1>
-        <p>Continue with Google to access Brent & Co, Find The Beat, Let's Cook Y'all, and Second Chance Careers.</p>
+        <p>Use your Brent & Co account to access Brent & Co, Find The Beat, Let's Cook Y'all, and Second Chance Careers.</p>
+        {error_html}
         <div class="auth-actions">
           <a class="button" href="{url_for('google_start')}?{urlencode({'next': next_url, 'app': app_name})}">Continue with Google</a>
+        </div>
+        <form class="auth-form" method="post" action="{url_for('login')}?{urlencode({'next': next_url, 'app': app_name})}">
+          <input type="email" name="email" autocomplete="email" placeholder="Email address" required>
+          <input type="password" name="password" autocomplete="current-password" placeholder="Password" required>
+          <button class="button secondary" type="submit">Sign in with Email</button>
+        </form>
+        <div class="auth-actions">
+          <a class="button secondary" href="{url_for('signup')}?{urlencode({'next': next_url, 'app': app_name})}">Create Brent & Co Account</a>
           <a class="button secondary" href="/">Back to Brent & Co</a>
         </div>
       </main>
@@ -378,6 +476,72 @@ def login():
     </html>
     """
     return body
+
+
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    next_url = request.args.get("next") or "/"
+    app_name = request.args.get("app", "")
+    error = ""
+    if request.method == "POST":
+        if request.form.get("password", "") != request.form.get("confirm_password", ""):
+            error = "Passwords do not match."
+        else:
+            try:
+                user = create_local_user(
+                    request.form.get("email", ""),
+                    request.form.get("password", ""),
+                    request.form.get("display_name", ""),
+                )
+                session.clear()
+                session["user_id"] = user["id"]
+                if app_name:
+                    return redirect(url_for("sso_start", app=app_name, next=next_url))
+                return redirect(safe_relative_next(next_url, "/"))
+            except Exception as exc:
+                app.logger.info("Local Brent signup failed: %s", exc)
+                error = "That account could not be created. The email may already be registered."
+    error_html = f"<p class='auth-error'>{error}</p>" if error else ""
+    return f"""
+    <!doctype html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Create account | Brent & Co</title>
+      <link rel="stylesheet" href="/styles.css">
+      <style>
+        body {{ min-height: 100vh; display: grid; place-items: center; padding: 24px; }}
+        .auth-card {{ width: min(520px, 100%); border-radius: 32px; padding: clamp(28px, 5vw, 48px); background: rgba(255,255,255,.88); box-shadow: 0 24px 60px rgba(8,18,35,.18); }}
+        .auth-card img {{ width: 88px; border-radius: 24px; }}
+        .auth-form {{ display: grid; gap: 12px; margin-top: 24px; }}
+        .auth-form input {{ width: 100%; border: 1px solid rgba(17,24,39,.14); border-radius: 16px; padding: 14px 16px; font: inherit; }}
+        .auth-form button {{ border: 0; cursor: pointer; }}
+        .auth-actions {{ display: grid; gap: 12px; margin-top: 16px; }}
+        .auth-error {{ color: #9f1239; font-weight: 800; }}
+      </style>
+    </head>
+    <body>
+      <main class="auth-card">
+        <img src="/assets/brent-co-profile.png" alt="Brent & Co">
+        <p class="eyebrow">Brent & Co account</p>
+        <h1>Create your account.</h1>
+        <p>Keep it quick: email, password, and the name you want shown across Brent & Co apps.</p>
+        {error_html}
+        <form class="auth-form" method="post" action="{url_for('signup')}?{urlencode({'next': next_url, 'app': app_name})}">
+          <input type="text" name="display_name" autocomplete="name" placeholder="Display name">
+          <input type="email" name="email" autocomplete="email" placeholder="Email address" required>
+          <input type="password" name="password" autocomplete="new-password" placeholder="Password" minlength="8" required>
+          <input type="password" name="confirm_password" autocomplete="new-password" placeholder="Confirm password" minlength="8" required>
+          <button class="button" type="submit">Create Account</button>
+        </form>
+        <div class="auth-actions">
+          <a class="button secondary" href="{url_for('login')}?{urlencode({'next': next_url, 'app': app_name})}">I already have an account</a>
+        </div>
+      </main>
+    </body>
+    </html>
+    """
 
 
 @app.get("/auth/google")
