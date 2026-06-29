@@ -798,6 +798,30 @@ def account_dashboard():
     """
 
 
+@app.get("/sso/debug")
+def sso_debug():
+    user = current_user()
+    if not user or not user["is_admin"]:
+        return "Admin access required.", 403
+    return {
+        "app": "Brent & Co",
+        "brent_public_url": BRENT_PUBLIC_URL,
+        "google_redirect_uri": google_redirect_uri(),
+        "sso_shared_secret_present": bool(SSO_SHARED_SECRET),
+        "sso_shared_secret_fingerprint": hashlib.sha256(SSO_SHARED_SECRET.encode("utf-8")).hexdigest()[:12],
+        "sso_token_seconds": SSO_TOKEN_SECONDS,
+        "session_cookie_secure": app.config.get("SESSION_COOKIE_SECURE"),
+        "session_cookie_samesite": app.config.get("SESSION_COOKIE_SAMESITE"),
+        "targets": {
+            name: {
+                "callback": target["callback"],
+                "default_next": target["default_next"],
+            }
+            for name, target in APP_SSO_TARGETS.items()
+        },
+    }
+
+
 @app.get("/admin")
 def admin_dashboard():
     admin = require_admin()
