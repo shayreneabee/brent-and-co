@@ -25,7 +25,7 @@ services:
       - key: DEBUG_SSO
         value: "0"
       - key: BRENT_PUBLIC_URL
-        sync: false
+        value: https://www.brentandco.org
       - key: GOOGLE_REDIRECT_URI
         sync: false
       - key: BRENT_OWNER_EMAIL

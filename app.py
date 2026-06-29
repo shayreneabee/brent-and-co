@@ -28,7 +28,7 @@ SESSION_SECRET = os.getenv("SESSION_SECRET") or os.getenv("SECRET_KEY") or "dev-
 SSO_SHARED_SECRET = os.getenv("SSO_SHARED_SECRET", "dev-sso-change-me").strip()
 SSO_TOKEN_SECONDS = int(os.getenv("SSO_TOKEN_SECONDS", "300"))
 DEBUG_SSO = os.getenv("DEBUG_SSO", "").strip().lower() in {"1", "true", "yes", "on"}
-BRENT_PUBLIC_URL = os.getenv("BRENT_PUBLIC_URL", "https://brentandco.org").rstrip("/")
+BRENT_PUBLIC_URL = os.getenv("BRENT_PUBLIC_URL", "https://www.brentandco.org").rstrip("/")
 BRENT_PUBLIC_PARTS = urlsplit(BRENT_PUBLIC_URL)
 BRENT_PUBLIC_HOST = BRENT_PUBLIC_PARTS.netloc.lower()
 
