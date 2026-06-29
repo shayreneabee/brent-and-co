@@ -1,6 +1,7 @@
 import base64
 import hashlib
 import hmac
+import html
 import json
 import os
 import secrets
@@ -44,6 +45,10 @@ APP_SSO_TARGETS = {
     "second-chance": {
         "callback": os.getenv("SECOND_CHANCE_SSO_CONSUME_URL", "https://secondchancecareers.org/sso/consume").strip(),
         "default_next": "/second-chance/profile",
+    },
+    "beu": {
+        "callback": os.getenv("BEU_SSO_CONSUME_URL", "https://beutravel.org/sso/consume").strip(),
+        "default_next": "/#profile",
     },
 }
 
@@ -396,6 +401,16 @@ def profile_completion(user):
     return round((sum(checks) / len(checks)) * 100)
 
 
+def format_timestamp(value):
+    try:
+        stamp = int(value or 0)
+    except (TypeError, ValueError):
+        stamp = 0
+    if not stamp:
+        return "Not recorded yet"
+    return time.strftime("%b %d, %Y %I:%M %p", time.localtime(stamp))
+
+
 def require_admin():
     user = current_user()
     if not user or not user["is_admin"]:
@@ -415,7 +430,7 @@ def google_redirect_uri():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    next_url = request.args.get("next") or "/"
+    next_url = request.args.get("next") or "/account"
     app_name = request.args.get("app", "")
     if request.method == "POST":
         user = authenticate_local_user(
@@ -428,7 +443,7 @@ def login():
         session["user_id"] = user["id"]
         if app_name:
             return redirect(url_for("sso_start", app=app_name, next=next_url))
-        return redirect(safe_relative_next(next_url, "/"))
+        return redirect(safe_relative_next(next_url, "/account"))
     error_html = "<p class='auth-error'>Email or password did not match.</p>" if request.args.get("error") == "invalid" else ""
     body = f"""
     <!doctype html>
@@ -480,7 +495,7 @@ def login():
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
-    next_url = request.args.get("next") or "/"
+    next_url = request.args.get("next") or "/account"
     app_name = request.args.get("app", "")
     error = ""
     if request.method == "POST":
@@ -497,7 +512,7 @@ def signup():
                 session["user_id"] = user["id"]
                 if app_name:
                     return redirect(url_for("sso_start", app=app_name, next=next_url))
-                return redirect(safe_relative_next(next_url, "/"))
+                return redirect(safe_relative_next(next_url, "/account"))
             except Exception as exc:
                 app.logger.info("Local Brent signup failed: %s", exc)
                 error = "That account could not be created. The email may already be registered."
@@ -550,7 +565,7 @@ def google_start():
         return "Google OAuth is not configured. Add GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET.", 503
     state = secrets.token_urlsafe(24)
     session["oauth_state"] = state
-    session["post_auth_next"] = request.args.get("next") or "/"
+    session["post_auth_next"] = request.args.get("next") or "/account"
     session["post_auth_app"] = request.args.get("app") or ""
     log_oauth_debug(
         "start",
@@ -576,7 +591,7 @@ def google_callback():
     incoming_state = request.args.get("state")
     expected_state = session.get("oauth_state")
     if incoming_state != expected_state:
-        next_path = session.get("post_auth_next") or "/"
+        next_path = session.get("post_auth_next") or "/account"
         app_name = session.get("post_auth_app") or ""
         log_oauth_debug(
             "state_mismatch",
@@ -618,13 +633,13 @@ def google_callback():
 
     user = upsert_google_user(profile)
     app_name = session.get("post_auth_app") or request.args.get("app") or ""
-    next_path = session.get("post_auth_next") or "/"
+    next_path = session.get("post_auth_next") or "/account"
     session.clear()
     session["user_id"] = user["id"]
     log_oauth_debug("success", host=request.host, app=app_name, user_email=user["email"])
     if app_name:
         return redirect(url_for("sso_start", app=app_name, next=next_path))
-    return redirect(safe_relative_next(next_path, "/"))
+    return redirect(safe_relative_next(next_path, "/account"))
 
 
 @app.get("/sso/start")
@@ -658,6 +673,129 @@ def logout():
     session.clear()
     flash("Signed out.")
     return redirect("/")
+
+
+@app.get("/account")
+def account_dashboard():
+    user = current_user()
+    if not user:
+        return redirect(url_for("login", next="/account"))
+    with get_db() as conn:
+        memberships = conn.execute(
+            """
+            SELECT app_name, role, joined_at, last_seen_at
+            FROM app_memberships
+            WHERE user_id = ?
+            ORDER BY last_seen_at DESC, joined_at DESC
+            """,
+            (user["id"],),
+        ).fetchall()
+    membership_names = {row["app_name"] for row in memberships}
+    app_cards = []
+    app_labels = {
+        "find-the-beat": "Find The Beat",
+        "lets-cook": "Let's Cook Y'all",
+        "second-chance": "Second Chance Careers",
+        "beu": "BEU",
+    }
+    for app_name, label in app_labels.items():
+        joined = app_name in membership_names
+        href = url_for("sso_start", app=app_name, next=APP_SSO_TARGETS[app_name]["default_next"])
+        status = "Connected" if joined else "Open app"
+        app_cards.append(
+            f"""
+            <a class="app-card" href="{href}">
+              <span>{html.escape(status)}</span>
+              <strong>{html.escape(label)}</strong>
+              <small>Use your Brent & Co account here.</small>
+            </a>
+            """
+        )
+    app_cards_html = "".join(app_cards)
+    rows = "".join(
+        f"""
+        <tr>
+          <td>{html.escape(row['app_name'])}</td>
+          <td>{html.escape(row['role'] or 'user')}</td>
+          <td>{format_timestamp(row['last_seen_at'])}</td>
+        </tr>
+        """
+        for row in memberships
+    ) or "<tr><td colspan='3'>No app handoffs yet. Choose an app below to connect it.</td></tr>"
+    avatar = user["profile_photo"] or "/assets/brent-co-profile.png"
+    display_name = html.escape(user["display_name"] or user["email"].split("@")[0])
+    email = html.escape(user["email"])
+    provider = html.escape(user["auth_provider"] or "local")
+    role = "Founder" if user["is_founder"] else ("Admin" if user["is_admin"] else "Member")
+    return f"""
+    <!doctype html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>My Brent & Co Account</title>
+      <link rel="stylesheet" href="/styles.css">
+      <style>
+        body {{ min-height: 100vh; background: #f7f2e9; color: #101827; padding: 24px; }}
+        .account-shell {{ width: min(1120px, 100%); margin: 0 auto; display: grid; gap: 22px; }}
+        .account-hero, .account-panel {{ background: rgba(255,255,255,.92); border: 1px solid rgba(17,24,39,.1); border-radius: 28px; padding: clamp(22px, 4vw, 42px); box-shadow: 0 20px 50px rgba(8,18,35,.12); }}
+        .account-hero {{ display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: center; }}
+        .account-avatar {{ width: 96px; height: 96px; border-radius: 28px; object-fit: cover; border: 3px solid #d9a441; background: #fff; }}
+        .account-hero h1 {{ margin: 4px 0 8px; font-size: clamp(2rem, 5vw, 4.6rem); line-height: .94; }}
+        .account-meta {{ display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }}
+        .pill {{ border-radius: 999px; background: #f7f2e9; border: 1px solid #e6d6b8; padding: 8px 12px; font-weight: 800; }}
+        .app-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }}
+        .app-card {{ display: grid; gap: 8px; padding: 18px; border-radius: 20px; background: linear-gradient(135deg, #0f172a, #1f3b49); color: #fff; text-decoration: none; box-shadow: 0 16px 30px rgba(15,23,42,.18); transition: transform .18s ease, box-shadow .18s ease; }}
+        .app-card:hover {{ transform: translateY(-3px); box-shadow: 0 20px 38px rgba(15,23,42,.24); }}
+        .app-card span {{ color: #f5c76b; font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 900; }}
+        .app-card strong {{ font-size: 1.25rem; }}
+        .app-card small {{ color: rgba(255,255,255,.78); }}
+        table {{ width: 100%; border-collapse: collapse; margin-top: 14px; }}
+        th, td {{ text-align: left; padding: 12px; border-bottom: 1px solid rgba(17,24,39,.1); }}
+        .account-actions {{ display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }}
+        @media (max-width: 640px) {{
+          .account-hero {{ grid-template-columns: 1fr; }}
+          .account-avatar {{ width: 82px; height: 82px; }}
+        }}
+      </style>
+    </head>
+    <body>
+      <main class="account-shell">
+        <section class="account-hero">
+          <img class="account-avatar" src="{html.escape(avatar)}" alt="">
+          <div>
+            <p class="eyebrow">Brent & Co account</p>
+            <h1>Welcome, {display_name}.</h1>
+            <p>This is your shared Brent & Co identity. One account, multiple apps, app-specific profiles.</p>
+            <div class="account-meta">
+              <span class="pill">{email}</span>
+              <span class="pill">{html.escape(role)}</span>
+              <span class="pill">{provider}</span>
+              <span class="pill">Profile {profile_completion(user)}% complete</span>
+            </div>
+            <div class="account-actions">
+              <a class="button" href="/">Brent & Co Home</a>
+              <a class="button secondary" href="/logout">Sign out</a>
+              <a class="button secondary" href="/admin">Founder Control Center</a>
+            </div>
+          </div>
+        </section>
+        <section class="account-panel">
+          <p class="eyebrow">App switcher</p>
+          <h2>Open your Brent & Co apps</h2>
+          <div class="app-grid">{app_cards_html}</div>
+        </section>
+        <section class="account-panel">
+          <h2>Connected app activity</h2>
+          <table>
+            <thead><tr><th>App</th><th>Role</th><th>Last seen</th></tr></thead>
+            <tbody>{rows}</tbody>
+          </table>
+        </section>
+      </main>
+    </body>
+    </html>
+    """
 
 
 @app.get("/admin")

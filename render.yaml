@@ -36,3 +36,5 @@ services:
         sync: false
       - key: SECOND_CHANCE_SSO_CONSUME_URL
         sync: false
+      - key: BEU_SSO_CONSUME_URL
+        sync: false
