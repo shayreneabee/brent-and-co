@@ -39,7 +39,7 @@ APP_SSO_TARGETS = {
         "default_next": "/profile",
     },
     "lets-cook": {
-        "callback": os.getenv("LETS_COOK_SSO_CONSUME_URL", "https://letscookyall.com/sso/consume").strip(),
+        "callback": os.getenv("LETS_COOK_SSO_CONSUME_URL", "https://www.letscookyall.com/sso/consume").strip(),
         "default_next": "/#account",
     },
     "second-chance": {

@@ -21,7 +21,9 @@ services:
       - key: SESSION_COOKIE_DOMAIN
         sync: false
       - key: SSO_SHARED_SECRET
-        generateValue: true
+        sync: false
+      - key: SSO_TOKEN_SECONDS
+        value: "900"
       - key: DEBUG_SSO
         value: "0"
       - key: BRENT_PUBLIC_URL
@@ -31,10 +33,10 @@ services:
       - key: BRENT_OWNER_EMAIL
         sync: false
       - key: FIND_THE_BEAT_SSO_CONSUME_URL
-        sync: false
+        value: https://www.findthebeatmusic.com/sso/consume
       - key: LETS_COOK_SSO_CONSUME_URL
-        sync: false
+        value: https://www.letscookyall.com/sso/consume
       - key: SECOND_CHANCE_SSO_CONSUME_URL
-        sync: false
+        value: https://secondchancecareers.org/sso/consume
       - key: BEU_SSO_CONSUME_URL
         sync: false
