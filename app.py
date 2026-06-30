@@ -18,18 +18,31 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 
 BASE_DIR = Path(__file__).resolve().parent
-INSTANCE_DIR = Path(os.getenv("INSTANCE_DIR", BASE_DIR / "instance"))
-DB_PATH = Path(os.getenv("DATABASE_PATH", INSTANCE_DIR / "brent_identity.db"))
-DATABASE_URL = os.getenv("DATABASE_URL", "").strip()
+
+
+def clean_env_value(name, default=""):
+    return os.getenv(name, str(default)).strip().strip("\"'")
+
+
+def int_env_value(name, default):
+    try:
+        return int(clean_env_value(name, default))
+    except (TypeError, ValueError):
+        return int(default)
+
+
+INSTANCE_DIR = Path(clean_env_value("INSTANCE_DIR", BASE_DIR / "instance"))
+DB_PATH = Path(clean_env_value("DATABASE_PATH", INSTANCE_DIR / "brent_identity.db"))
+DATABASE_URL = clean_env_value("DATABASE_URL")
 USE_POSTGRES = DATABASE_URL.startswith(("postgres://", "postgresql://"))
 
-GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID", "").strip()
-GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET", "").strip()
-SESSION_SECRET = os.getenv("SESSION_SECRET") or os.getenv("SECRET_KEY") or "dev-session-change-me"
-SSO_SHARED_SECRET = os.getenv("SSO_SHARED_SECRET", "dev-sso-change-me").strip()
-SSO_TOKEN_SECONDS = int(os.getenv("SSO_TOKEN_SECONDS", "300"))
-DEBUG_SSO = os.getenv("DEBUG_SSO", "").strip().lower() in {"1", "true", "yes", "on"}
-BRENT_PUBLIC_URL = os.getenv("BRENT_PUBLIC_URL", "https://www.brentandco.org").rstrip("/")
+GOOGLE_CLIENT_ID = clean_env_value("GOOGLE_CLIENT_ID")
+GOOGLE_CLIENT_SECRET = clean_env_value("GOOGLE_CLIENT_SECRET")
+SESSION_SECRET = clean_env_value("SESSION_SECRET") or clean_env_value("SECRET_KEY") or "dev-session-change-me"
+SSO_SHARED_SECRET = clean_env_value("SSO_SHARED_SECRET", "dev-sso-change-me")
+SSO_TOKEN_SECONDS = int_env_value("SSO_TOKEN_SECONDS", 300)
+DEBUG_SSO = clean_env_value("DEBUG_SSO").lower() in {"1", "true", "yes", "on"}
+BRENT_PUBLIC_URL = clean_env_value("BRENT_PUBLIC_URL", "https://www.brentandco.org").rstrip("/")
 BRENT_PUBLIC_PARTS = urlsplit(BRENT_PUBLIC_URL)
 BRENT_PUBLIC_HOST = BRENT_PUBLIC_PARTS.netloc.lower()
 
@@ -952,4 +965,4 @@ def static_files(path):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.getenv("PORT", "5001")), debug=True)
+    app.run(host="0.0.0.0", port=int_env_value("PORT", 5001), debug=True)
