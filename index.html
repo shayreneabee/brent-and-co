@@ -13,6 +13,7 @@
     <script defer data-domain="brentandco.org" src="https://plausible.io/js/script.js"></script>
   </head>
   <body>
+    <a class="skip-link" href="#home">Skip to main content</a>
     <header class="site-header">
       <a class="brand" href="#home" aria-label="Brent and Co home">
         <img src="assets/brent-co-horizontal.png" alt="Brent & Co." />
@@ -63,21 +64,21 @@
             <img src="assets/brent-co-main.png" alt="Brent & Co. Built from the bottom. Designed for everybody." />
           </div>
           <a class="preview-card preview-ftb" href="https://findthebeatmusic.com/" aria-label="Open Find the Beat">
-            <img src="assets/find-the-beat-logo.svg" alt="" />
+            <img src="assets/find-the-beat-logo.svg" alt="Find The Beat logo" />
             <span>Flagship</span>
             <strong>Find the Beat</strong>
             <p>Music profiles, creator discovery, performances, messages.</p>
             <em>Open app</em>
           </a>
           <a class="preview-card preview-cook" href="https://letscookyall.com/" aria-label="Open Let's Cook Y'all">
-            <img src="assets/lets-cook-logo.png" alt="" />
+            <img src="assets/lets-cook-logo.png" alt="Let's Cook Y'all logo" />
             <span>Kitchen</span>
             <strong>Let’s Cook Y’all</strong>
             <p>Recipes, lessons, saved favorites, and food video uploads.</p>
             <em>Open app</em>
           </a>
           <a class="preview-card preview-career" href="https://secondchancecareers.org/" aria-label="Open Second Chance Careers">
-            <img src="assets/second-chance-logo.svg" alt="" />
+            <img src="assets/second-chance-logo.svg" alt="Second Chance Careers logo" />
             <span>Momentum</span>
             <strong>Second Chance</strong>
             <p>Career paths, saved checklists, dashboards, and support.</p>
@@ -103,7 +104,7 @@
         </div>
         <div class="music-visual reveal" aria-hidden="true">
           <div class="artist-card main">
-            <img src="assets/find-the-beat-logo.svg" alt="" />
+            <img src="assets/find-the-beat-logo.svg" alt="Find The Beat logo" />
             <strong>Artist Profile</strong>
             <span>Producer / Vocalist / Engineer</span>
           </div>
@@ -153,22 +154,22 @@
         </div>
         <div class="app-links">
           <a class="live-link reveal" href="https://findthebeatmusic.com/" rel="noreferrer">
-            <img src="assets/find-the-beat-logo.svg" alt="" />
+            <img src="assets/find-the-beat-logo.svg" alt="Find The Beat logo" />
             <strong>Find the Beat</strong>
             <span>Modern music collaboration platform</span>
           </a>
           <a class="live-link reveal" href="https://letscookyall.com/" rel="noreferrer">
-            <img src="assets/lets-cook-logo.png" alt="" />
+            <img src="assets/lets-cook-logo.png" alt="Let's Cook Y'all logo" />
             <strong>Let’s Cook Y’all</strong>
             <span>Cozy recipe and learning app</span>
           </a>
           <a class="live-link reveal" href="https://secondchancecareers.org/" rel="noreferrer">
-            <img src="assets/second-chance-logo.svg" alt="" />
+            <img src="assets/second-chance-logo.svg" alt="Second Chance Careers logo" />
             <strong>Second Chance Careers</strong>
             <span>Hopeful career rebuilding tools</span>
           </a>
           <a class="live-link reveal" href="https://beutravel.org/" rel="noreferrer">
-            <img src="assets/beu-logo.jpg" alt="" />
+            <img src="assets/beu-logo.jpg" alt="BEU Travel logo" />
             <strong>BEU</strong>
             <span>Standalone culture and travel discovery app</span>
           </a>
@@ -206,7 +207,7 @@
         </div>
         <div class="identity-card" aria-label="Founder account preview">
           <div class="identity-avatar" aria-hidden="true">
-            <img src="assets/brent-co-profile.png" alt="" />
+            <img src="assets/brent-co-profile.png" alt="Shay, founder of Brent and Co." />
           </div>
           <div>
             <strong>Shay</strong>
@@ -219,8 +220,9 @@
         </div>
         <div class="auth-buttons" aria-label="Future sign-in options">
           <a href="/auth/google?app=find-the-beat&amp;next=/profile">Continue with Google</a>
-          <button type="button" disabled>Continue with Apple</button>
-          <button type="button" disabled>Continue with Facebook</button>
+          <button type="button" disabled aria-describedby="future-auth-note">Continue with Apple</button>
+          <button type="button" disabled aria-describedby="future-auth-note">Continue with Facebook</button>
+          <p id="future-auth-note" class="sr-only">Apple and Facebook sign-in are planned but not available yet. Use Google or email to continue.</p>
           <a href="/login">Continue with Brent Account</a>
         </div>
       </section>

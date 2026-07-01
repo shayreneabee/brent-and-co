@@ -481,8 +481,9 @@ def login():
       </style>
     </head>
     <body>
-      <main class="auth-card">
-        <img src="/assets/brent-co-profile.png" alt="Brent & Co">
+      <a class="skip-link" href="#main-content">Skip to main content</a>
+      <main id="main-content" class="auth-card" tabindex="-1">
+        <img src="/assets/brent-co-profile.png" alt="Brent & Co founder profile mark">
         <p class="eyebrow">Brent & Co account</p>
         <h1>Sign in once. Use every app.</h1>
         <p>Use your Brent & Co account to access Brent & Co, Find The Beat, Let's Cook Y'all, and Second Chance Careers.</p>
@@ -491,8 +492,10 @@ def login():
           <a class="button" href="{url_for('google_start')}?{urlencode({'next': next_url, 'app': app_name})}">Continue with Google</a>
         </div>
         <form class="auth-form" method="post" action="{url_for('login')}?{urlencode({'next': next_url, 'app': app_name})}">
-          <input type="email" name="email" autocomplete="email" placeholder="Email address" required>
-          <input type="password" name="password" autocomplete="current-password" placeholder="Password" required>
+          <label class="sr-only" for="brent-login-email">Email address</label>
+          <input id="brent-login-email" type="email" name="email" autocomplete="email" placeholder="Email address" required>
+          <label class="sr-only" for="brent-login-password">Password</label>
+          <input id="brent-login-password" type="password" name="password" autocomplete="current-password" placeholder="Password" required>
           <button class="button secondary" type="submit">Sign in with Email</button>
         </form>
         <div class="auth-actions">
@@ -550,17 +553,22 @@ def signup():
       </style>
     </head>
     <body>
-      <main class="auth-card">
-        <img src="/assets/brent-co-profile.png" alt="Brent & Co">
+      <a class="skip-link" href="#main-content">Skip to main content</a>
+      <main id="main-content" class="auth-card" tabindex="-1">
+        <img src="/assets/brent-co-profile.png" alt="Brent & Co founder profile mark">
         <p class="eyebrow">Brent & Co account</p>
         <h1>Create your account.</h1>
         <p>Keep it quick: email, password, and the name you want shown across Brent & Co apps.</p>
         {error_html}
         <form class="auth-form" method="post" action="{url_for('signup')}?{urlencode({'next': next_url, 'app': app_name})}">
-          <input type="text" name="display_name" autocomplete="name" placeholder="Display name">
-          <input type="email" name="email" autocomplete="email" placeholder="Email address" required>
-          <input type="password" name="password" autocomplete="new-password" placeholder="Password" minlength="8" required>
-          <input type="password" name="confirm_password" autocomplete="new-password" placeholder="Confirm password" minlength="8" required>
+          <label class="sr-only" for="brent-signup-name">Display name</label>
+          <input id="brent-signup-name" type="text" name="display_name" autocomplete="name" placeholder="Display name">
+          <label class="sr-only" for="brent-signup-email">Email address</label>
+          <input id="brent-signup-email" type="email" name="email" autocomplete="email" placeholder="Email address" required>
+          <label class="sr-only" for="brent-signup-password">Password</label>
+          <input id="brent-signup-password" type="password" name="password" autocomplete="new-password" placeholder="Password" minlength="8" required>
+          <label class="sr-only" for="brent-signup-confirm">Confirm password</label>
+          <input id="brent-signup-confirm" type="password" name="confirm_password" autocomplete="new-password" placeholder="Confirm password" minlength="8" required>
           <button class="button" type="submit">Create Account</button>
         </form>
         <div class="auth-actions">
