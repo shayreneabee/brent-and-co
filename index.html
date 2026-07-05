@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Brent & Co.</title>
-    <meta name="description" content="Brent & Co. is a cinematic ecosystem of warm, practical apps for culture, creativity, family, careers, and community." />
+    <meta name="description" content="Brent & Co. is Shalanda Brent's creative technology home for platforms that help people cook, connect, rebuild, and move with purpose." />
     <meta name="theme-color" content="#2c1a10" />
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="icon" type="image/png" href="assets/brent-co-icon-192.png" />
@@ -12,198 +12,202 @@
     <link rel="stylesheet" href="styles.css" />
     <script defer data-domain="brentandco.org" src="https://plausible.io/js/script.js"></script>
   </head>
-  <body>
+  <body class="bc-home">
     <a class="skip-link" href="#home">Skip to main content</a>
-    <header class="site-header">
+    <header class="site-header bc-header">
       <a class="brand" href="#home" aria-label="Brent and Co home">
         <img src="assets/brent-co-horizontal.png" alt="Brent & Co." />
       </a>
       <nav aria-label="Main navigation">
         <a href="#ecosystem">Ecosystem</a>
-        <a href="#find-the-beat">Find the Beat</a>
-        <a href="#apps">Live Apps</a>
-        <a href="founder.html">Founder</a>
+        <a href="#founder">Founder</a>
+        <a href="#trust">Trust</a>
+        <a href="#apps">Apps</a>
+        <a href="founder.html">Story</a>
         <a href="/login">Sign In</a>
-        <a href="#footer">Connect</a>
       </nav>
     </header>
 
     <main id="home">
-      <section class="hero cinematic" aria-labelledby="hero-title">
-        <div class="ambient ambient-one" aria-hidden="true"></div>
-        <div class="ambient ambient-two" aria-hidden="true"></div>
-        <div class="particle-field" aria-hidden="true">
-          <span></span><span></span><span></span><span></span><span></span>
-        </div>
-
-        <div class="hero-story reveal">
-          <div class="hero-kicker">
-            <div class="logo-orbit">
-              <img src="assets/brent-co-profile.png" alt="Brent & Co." />
-            </div>
-            <div>
-              <p class="eyebrow">Welcome into the Brent &amp; Co world</p>
-              <span>A warm app ecosystem for real life</span>
-            </div>
-          </div>
-          <img class="hero-brand-lockup" src="assets/brent-co-horizontal.png" alt="Brent & Co. Built from the bottom. Designed for everybody." />
-          <div class="banner-message">
-            <img src="assets/brent-co-square.png" alt="Brent & Co." />
-            <p>To Scooter, with love.</p>
-          </div>
-          <h1 id="hero-title">Technology for culture, creativity, family, and second chances.</h1>
-          <p>One Brent &amp; Co account. Multiple apps. Built for culture, connection, creativity, and second chances.</p>
+      <section class="bc-hero reveal" aria-labelledby="hero-title">
+        <div class="bc-hero-bg" aria-hidden="true"></div>
+        <div class="bc-hero-copy">
+          <p class="eyebrow">Official home of Shalanda Brent's app family</p>
+          <h1 id="hero-title">Building tools for real people, real stories, and second chances.</h1>
+          <p class="bc-hero-subcopy">Brent &amp; Co is the creative technology home for platforms that help people cook, connect, rebuild, and move with purpose.</p>
           <div class="actions">
-            <a class="button" href="#ecosystem">Explore the Ecosystem</a>
-            <a class="button secondary" href="#apps">View Live Apps</a>
+            <a class="button" href="#ecosystem">Explore the apps</a>
+            <a class="button secondary" href="/auth/google?app=find-the-beat&amp;next=/profile">Continue with Google</a>
+          </div>
+          <div class="bc-founder-note" aria-label="Founder note">
+            <img src="assets/founder-shalanda-brent.png" alt="Shalanda Brent" />
+            <p>Built with love, discipline, and a little Mississippi grit.</p>
           </div>
         </div>
 
-        <div class="hero-previews reveal" aria-label="Brent and Co app previews">
-          <div class="brand-showcase-card" aria-label="Brent and Co brand mark">
+        <div class="bc-hero-stack" aria-label="Brent and Co ecosystem preview">
+          <article class="bc-command-card">
             <img src="assets/brent-co-main.png" alt="Brent & Co. Built from the bottom. Designed for everybody." />
+            <div>
+              <span>Founder-led creative tech</span>
+              <strong>Tools for the rebuilders, creators, cooks, and dreamers.</strong>
+            </div>
+          </article>
+          <div class="bc-mini-grid">
+            <a class="bc-mini-card ftb" href="https://findthebeatmusic.com/" rel="noreferrer">
+              <img src="assets/find-the-beat-logo.svg" alt="Find The Beat logo" />
+              <span>Find The Beat</span>
+            </a>
+            <a class="bc-mini-card cook" href="https://letscookyall.com/" rel="noreferrer">
+              <img src="assets/lets-cook-logo.png" alt="Let's Cook Y'all logo" />
+              <span>Let's Cook Y'all</span>
+            </a>
+            <a class="bc-mini-card career" href="https://secondchancecareers.org/" rel="noreferrer">
+              <img src="assets/second-chance-logo.svg" alt="Second Chance Careers logo" />
+              <span>Second Chance</span>
+            </a>
           </div>
-          <a class="preview-card preview-ftb" href="https://findthebeatmusic.com/" aria-label="Open Find the Beat">
-            <img src="assets/find-the-beat-logo.svg" alt="Find The Beat logo" />
-            <span>Flagship</span>
-            <strong>Find the Beat</strong>
-            <p>Music profiles, creator discovery, performances, messages.</p>
-            <em>Open app</em>
-          </a>
-          <a class="preview-card preview-cook" href="https://letscookyall.com/" aria-label="Open Let's Cook Y'all">
-            <img src="assets/lets-cook-logo.png" alt="Let's Cook Y'all logo" />
-            <span>Kitchen</span>
-            <strong>Let’s Cook Y’all</strong>
-            <p>Recipes, lessons, saved favorites, and food video uploads.</p>
-            <em>Open app</em>
-          </a>
-          <a class="preview-card preview-career" href="https://secondchancecareers.org/" aria-label="Open Second Chance Careers">
-            <img src="assets/second-chance-logo.svg" alt="Second Chance Careers logo" />
-            <span>Momentum</span>
-            <strong>Second Chance</strong>
-            <p>Career paths, saved checklists, dashboards, and support.</p>
-            <em>Open app</em>
-          </a>
-        </div>
-
-        <a class="scroll-cue" href="#find-the-beat" aria-label="Scroll to Find the Beat">
-          <span></span>
-          Start with the sound
-        </a>
-      </section>
-
-      <section class="chapter find-chapter" id="find-the-beat">
-        <div class="chapter-copy reveal">
-          <p class="eyebrow">Featured platform</p>
-          <h2>Find the Beat leads the ecosystem.</h2>
-          <p>Discover musicians, producers, and creatives across the country.</p>
-          <div class="actions">
-            <a class="button" href="https://findthebeatmusic.com/" rel="noreferrer">Open Find the Beat</a>
-            <a class="button secondary" href="https://findthebeatmusic.com/profiles" rel="noreferrer">Browse Creators</a>
-          </div>
-        </div>
-        <div class="music-visual reveal" aria-hidden="true">
-          <div class="artist-card main">
-            <img src="assets/find-the-beat-logo.svg" alt="Find The Beat logo" />
-            <strong>Artist Profile</strong>
-            <span>Producer / Vocalist / Engineer</span>
-          </div>
-          <div class="artist-card small one">Available for Collabs</div>
-          <div class="artist-card small two">New Performance</div>
-          <div class="waveform"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <aside class="bc-dedication-card">
+            <span>Brand note</span>
+            <strong>To Scooter, with love.</strong>
+          </aside>
         </div>
       </section>
 
-      <section class="ecosystem-river" id="ecosystem">
-        <article class="river-panel cook-panel reveal">
-          <div class="river-copy">
-            <p class="eyebrow">Let’s Cook Y’all</p>
-            <h2>Cook. Learn. Grow.</h2>
-            <p>Recipe-card inspired learning with a cozy kitchen feel, made for families, beginners, and people who want dinner to feel less stressful.</p>
-            <a class="button" href="https://letscookyall.com/" rel="noreferrer">Visit Let’s Cook</a>
-          </div>
-          <div class="recipe-float" aria-hidden="true">
-            <img src="assets/editorial-cooking-hero.jpg" alt="" />
-            <strong>Sunday Comfort Supper</strong>
-            <span>Cozy recipes, lessons, and food videos</span>
-          </div>
-        </article>
-
-        <article class="river-panel career-panel reveal">
-          <div class="roadmap" aria-hidden="true">
-            <span class="done">Profile</span>
-            <span class="done">Resume</span>
-            <span>Apply</span>
-            <span>Grow</span>
-          </div>
-          <div class="river-copy">
-            <p class="eyebrow">Second Chance Careers</p>
-            <h2>Built for people rebuilding forward.</h2>
-            <p>Tools, guidance, and support for rebuilding your future with dignity, structure, and real next steps.</p>
-            <a class="button" href="https://secondchancecareers.org/" rel="noreferrer">Visit Second Chance</a>
-          </div>
-        </article>
-
+      <section class="bc-brand-strip reveal" aria-label="Brand moments">
+        <span>One account.</span>
+        <span>Real stories.</span>
+        <span>Built for mobile.</span>
+        <span>Made with care.</span>
       </section>
 
-      <section class="live-apps" id="live-apps">
-        <span class="anchor-target" id="apps" aria-hidden="true"></span>
+      <section class="bc-ecosystem" id="ecosystem" aria-labelledby="ecosystem-title">
         <div class="section-heading reveal">
-          <p class="eyebrow">The live universe</p>
-          <h2>These aren’t random projects. This is a real digital ecosystem with heart.</h2>
+          <p class="eyebrow">The Brent &amp; Co ecosystem</p>
+          <h2 id="ecosystem-title">A family of apps with their own rhythm.</h2>
+          <p>Each platform has a different purpose, but they share the same foundation: practical tools, human design, and room for people to be seen.</p>
         </div>
-        <div class="app-links">
-          <a class="live-link reveal" href="https://findthebeatmusic.com/" rel="noreferrer">
-            <img src="assets/find-the-beat-logo.svg" alt="Find The Beat logo" />
-            <strong>Find the Beat</strong>
-            <span>Modern music collaboration platform</span>
+
+        <div class="bc-app-grid">
+          <a class="bc-app-card cook reveal" href="https://letscookyall.com/" rel="noreferrer">
+            <div class="bc-card-image">
+              <img src="assets/editorial-cooking-hero.jpg" alt="A warm kitchen table with food being prepared" />
+            </div>
+            <div class="bc-app-card-copy">
+              <img src="assets/lets-cook-logo.png" alt="" aria-hidden="true" />
+              <p class="eyebrow">Food, family, culture</p>
+              <h3>Let's Cook Y'all</h3>
+              <p>A kitchen-first cooking app for recipes, regional food stories, family learning, and the joy of making something good.</p>
+              <span>Open the kitchen</span>
+            </div>
           </a>
-          <a class="live-link reveal" href="https://letscookyall.com/" rel="noreferrer">
-            <img src="assets/lets-cook-logo.png" alt="Let's Cook Y'all logo" />
-            <strong>Let’s Cook Y’all</strong>
-            <span>Cozy recipe and learning app</span>
+
+          <a class="bc-app-card music reveal" href="https://findthebeatmusic.com/" rel="noreferrer">
+            <div class="bc-card-image">
+              <img src="assets/editorial-music-collab.jpg" alt="Musicians collaborating in a studio setting" />
+            </div>
+            <div class="bc-app-card-copy">
+              <img src="assets/find-the-beat-logo.svg" alt="" aria-hidden="true" />
+              <p class="eyebrow">Music, networking, collaboration</p>
+              <h3>Find The Beat</h3>
+              <p>A creative network for artists, producers, musicians, engineers, and the people building the next great sound.</p>
+              <span>Find your people</span>
+            </div>
           </a>
-          <a class="live-link reveal" href="https://secondchancecareers.org/" rel="noreferrer">
-            <img src="assets/second-chance-logo.svg" alt="Second Chance Careers logo" />
-            <strong>Second Chance Careers</strong>
-            <span>Hopeful career rebuilding tools</span>
+
+          <a class="bc-app-card careers reveal" href="https://secondchancecareers.org/" rel="noreferrer">
+            <div class="bc-card-image">
+              <img src="assets/editorial-career-support.jpg" alt="A person receiving career support at a table" />
+            </div>
+            <div class="bc-app-card-copy">
+              <img src="assets/second-chance-logo.svg" alt="" aria-hidden="true" />
+              <p class="eyebrow">Reentry, workforce, rebuilding</p>
+              <h3>Second Chance Careers</h3>
+              <p>A hopeful career platform for documents, resumes, job search, progress, and the practical work of starting again.</p>
+              <span>Start the next step</span>
+            </div>
           </a>
-          <a class="live-link reveal" href="https://beutravel.org/" rel="noreferrer">
-            <img src="assets/beu-logo.jpg" alt="BEU Travel logo" />
-            <strong>BEU</strong>
-            <span>Standalone culture and travel discovery app</span>
+
+          <a class="bc-app-card beu reveal" href="https://beutravel.org/" rel="noreferrer">
+            <div class="bc-card-image">
+              <img src="assets/editorial-culture-travel.jpg" alt="A colorful cultural travel scene" />
+            </div>
+            <div class="bc-app-card-copy">
+              <img src="assets/beu-logo.jpg" alt="" aria-hidden="true" />
+              <p class="eyebrow">Culture, travel, discovery</p>
+              <h3>BEU</h3>
+              <p>A travel and culture companion for finding places, stories, and experiences worth remembering.</p>
+              <span>Go discover</span>
+            </div>
           </a>
         </div>
       </section>
 
-      <section class="founder-profile reveal" id="about-founder" aria-labelledby="founder-title">
-        <div class="founder-mark">
-          <img src="assets/founder-shalanda-brent.png" alt="Shalanda Brent, Founder and CEO of Brent & Co." />
+      <section class="bc-founder-section reveal" id="founder" aria-labelledby="founder-title">
+        <div class="bc-founder-portrait">
+          <img src="assets/founder-shalanda-brent.png" alt="Shalanda Brent, founder of Brent & Co." />
         </div>
-        <div class="founder-copy">
-          <p class="eyebrow">Founder &amp; CEO, Brent &amp; Co</p>
-          <h2 id="founder-title">Shalanda Brent</h2>
-          <h3>Veteran. Builder. Designer. Founder.</h3>
-          <p>Shalanda Brent builds practical technology for people creating a new path forward. Brent &amp; Co brings her work in music, careers, cooking, and culture into one connected ecosystem.</p>
-          <blockquote>Built from real life, shaped with care, and designed to help people connect, learn, work, and grow.</blockquote>
-          <div class="founder-badges" aria-label="Founder badges">
-            <span>Founder</span>
-            <span>Brent &amp; Co</span>
-            <span>Verified</span>
+        <div class="bc-founder-copy">
+          <p class="eyebrow">Founder-led by design</p>
+          <h2 id="founder-title">Built from lived experience.</h2>
+          <p>Brent &amp; Co was created by Shalanda Brent as a home for ideas that solve real problems, from helping people find work after setbacks, to teaching families how to cook, to giving artists a place to be discovered.</p>
+          <blockquote>Good technology should feel like somebody thought about you before you arrived.</blockquote>
+          <div class="bc-founder-tags" aria-label="Founder values">
+            <span>Hospitality</span>
+            <span>Discipline</span>
+            <span>Culture</span>
+            <span>Second chances</span>
           </div>
-          <div class="founder-contact-list">
-            <a href="mailto:shalanda.brent@gmail.com">shalanda.brent@gmail.com</a>
+          <div class="actions">
+            <a class="button" href="founder.html">Read the founder story</a>
+            <a class="button secondary" href="mailto:shalanda.brent@gmail.com">Contact Shalanda</a>
           </div>
         </div>
-        <a class="button secondary" href="founder.html">Learn More About Brent &amp; Co</a>
       </section>
 
-      <section class="identity-foundation reveal" aria-labelledby="identity-title">
+      <section class="bc-trust" id="trust" aria-labelledby="trust-title">
+        <div class="section-heading reveal">
+          <p class="eyebrow">A shared foundation</p>
+          <h2 id="trust-title">One Brent &amp; Co account. Every app keeps its own purpose.</h2>
+        </div>
+        <div class="bc-trust-grid">
+          <article class="bc-trust-card reveal">
+            <span>01</span>
+            <h3>One account</h3>
+            <p>Move across the Brent &amp; Co family without rebuilding your identity from scratch every time.</p>
+          </article>
+          <article class="bc-trust-card reveal">
+            <span>02</span>
+            <h3>Secure Google login</h3>
+            <p>Sign in with Google or a Brent account through the existing authentication foundation.</p>
+          </article>
+          <article class="bc-trust-card reveal">
+            <span>03</span>
+            <h3>Privacy-first profiles</h3>
+            <p>Profiles are built to support each app's purpose without making personal details feel careless.</p>
+          </article>
+          <article class="bc-trust-card reveal">
+            <span>04</span>
+            <h3>Built for mobile</h3>
+            <p>The ecosystem is meant to be useful on the phone already in somebody's hand.</p>
+          </article>
+          <article class="bc-trust-card reveal">
+            <span>05</span>
+            <h3>Growing app family</h3>
+            <p>Cooking, music, careers, travel, and more ideas shaped by real needs.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="identity-foundation bc-account-panel reveal" id="apps" aria-labelledby="account-title">
         <div>
-          <p class="eyebrow">Shared account foundation</p>
-          <h2 id="identity-title">One Brent &amp; Co profile, ready for every app.</h2>
-          <p>Sign in once with your Brent &amp; Co account, then move between Find the Beat, Let’s Cook Y’all, BEU, and Second Chance Careers while each app keeps its own profile details.</p>
-          <a class="button" href="/sso/start?app=find-the-beat">Open Brent Account</a>
+          <p class="eyebrow">Brent &amp; Co identity</p>
+          <h2 id="account-title">Sign in once. Keep moving.</h2>
+          <p>Use Brent &amp; Co as the front door, then enter the app that fits what you are doing today.</p>
+          <div class="actions">
+            <a class="button" href="/auth/google?app=find-the-beat&amp;next=/profile">Continue with Google</a>
+            <a class="button secondary" href="/login">Use Brent Account</a>
+          </div>
         </div>
         <div class="identity-card" aria-label="Founder account preview">
           <div class="identity-avatar" aria-hidden="true">
@@ -218,17 +222,11 @@
             <span>Verified</span>
           </div>
         </div>
-        <div class="auth-buttons" aria-label="Future sign-in options">
-          <a href="/auth/google?app=find-the-beat&amp;next=/profile">Continue with Google</a>
-          <button type="button" disabled aria-describedby="future-auth-note">Continue with Apple</button>
-          <button type="button" disabled aria-describedby="future-auth-note">Continue with Facebook</button>
-          <p id="future-auth-note" class="sr-only">Apple and Facebook sign-in are planned but not available yet. Use Google or email to continue.</p>
-          <a href="/login">Continue with Brent Account</a>
-        </div>
       </section>
 
-      <section class="homage reveal" aria-label="Dedication">
-        <p>To Scooter, with love.</p>
+      <section class="bc-final-note reveal" aria-label="Personal brand note">
+        <p>Tools for the rebuilders, creators, cooks, and dreamers.</p>
+        <strong>To Scooter, with love.</strong>
       </section>
     </main>
 
@@ -237,7 +235,7 @@
         <img src="assets/brent-co-square.png" alt="Brent & Co." />
         <div>
           <strong>Brent &amp; Co</strong>
-          <span>To Scooter, with love.</span>
+          <span>Built from the bottom. Designed for everybody.</span>
         </div>
       </div>
       <form class="newsletter" name="waitlist" method="POST" data-netlify="true">
@@ -248,11 +246,12 @@
         </div>
       </form>
       <div class="footer-links" aria-label="Brent and Co app links">
-        <a href="https://findthebeatmusic.com/" rel="noreferrer">Find the Beat</a>
-        <a href="https://letscookyall.com/" rel="noreferrer">Let’s Cook Y’all</a>
+        <a href="https://findthebeatmusic.com/" rel="noreferrer">Find The Beat</a>
+        <a href="https://letscookyall.com/" rel="noreferrer">Let's Cook Y'all</a>
         <a href="https://secondchancecareers.org/" rel="noreferrer">Second Chance Careers</a>
         <a href="https://beutravel.org/" rel="noreferrer">BEU</a>
         <a href="founder.html">Founder</a>
+        <a href="/account">Account</a>
       </div>
       <nav class="ecosystem-dock" aria-label="Brent and Co ecosystem quick links">
         <a href="https://brentandco.org/" rel="noreferrer" aria-label="Brent & Co homepage">BC</a>

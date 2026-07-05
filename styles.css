@@ -1651,3 +1651,558 @@ h2 {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* Brent & Co homepage identity refresh */
+.bc-home {
+  background:
+    radial-gradient(circle at 12% 0%, rgba(239, 189, 90, 0.24), transparent 30rem),
+    radial-gradient(circle at 86% 10%, rgba(78, 143, 215, 0.16), transparent 28rem),
+    linear-gradient(180deg, #fffaf0 0%, #fff7e8 42%, #f8efe1 100%);
+}
+
+.bc-header {
+  background: rgba(255, 250, 240, 0.78);
+  border-bottom: 1px solid rgba(44, 26, 16, 0.08);
+}
+
+.bc-header .brand img {
+  box-shadow: 0 14px 38px rgba(44, 26, 16, 0.13);
+}
+
+.bc-hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.86fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: center;
+  min-height: min(780px, calc(100vh - 1.4rem));
+  margin: 1rem clamp(0.85rem, 3vw, 2rem) 0;
+  padding: clamp(6.5rem, 10vw, 8.2rem) clamp(1rem, 5vw, 5rem) clamp(2.5rem, 5vw, 4rem);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  border-radius: 0 0 44px 44px;
+  background:
+    linear-gradient(135deg, rgba(45, 27, 17, 0.93), rgba(64, 34, 26, 0.9) 48%, rgba(20, 54, 43, 0.92)),
+    url("assets/editorial-kitchen-prep.jpg") center / cover no-repeat;
+  color: var(--cream);
+  box-shadow: 0 34px 96px rgba(44, 26, 16, 0.28);
+}
+
+.bc-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 22% 18%, rgba(239, 189, 90, 0.24), transparent 20rem),
+    radial-gradient(circle at 86% 18%, rgba(242, 138, 46, 0.16), transparent 20rem),
+    linear-gradient(90deg, rgba(27, 15, 10, 0.78), rgba(27, 15, 10, 0.2));
+}
+
+.bc-hero-bg {
+  position: absolute;
+  inset: auto 8% 7% auto;
+  width: min(36rem, 52vw);
+  aspect-ratio: 1;
+  z-index: -1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(239, 189, 90, 0.26), transparent 62%),
+    radial-gradient(circle at 30% 24%, rgba(255, 247, 232, 0.2), transparent 42%);
+  filter: blur(18px);
+  animation: drift 13s ease-in-out infinite alternate;
+}
+
+.bc-hero-copy {
+  max-width: 46rem;
+}
+
+.bc-hero h1 {
+  max-width: 760px;
+  font-size: clamp(3rem, 6.4vw, 6.8rem);
+  line-height: 0.92;
+}
+
+.bc-hero-subcopy {
+  max-width: 40rem;
+  margin: 1rem 0 0;
+  color: rgba(255, 247, 232, 0.82);
+  font-size: clamp(1.02rem, 1.55vw, 1.25rem);
+  line-height: 1.65;
+}
+
+.bc-founder-note {
+  width: min(100%, 33rem);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-top: 1.4rem;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid rgba(255, 247, 232, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 247, 232, 0.11);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(16px);
+}
+
+.bc-founder-note img {
+  width: 3rem;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.bc-founder-note p {
+  margin: 0;
+  color: rgba(255, 247, 232, 0.9);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1rem;
+}
+
+.bc-hero-stack {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.bc-command-card,
+.bc-dedication-card,
+.bc-mini-card {
+  border: 1px solid rgba(255, 247, 232, 0.18);
+  background: rgba(255, 247, 232, 0.13);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(22px);
+}
+
+.bc-command-card {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 34px;
+  transform: rotate(1deg);
+}
+
+.bc-command-card img {
+  width: 100%;
+  max-height: 18rem;
+  object-fit: contain;
+  border-radius: 26px;
+  background: rgba(7, 20, 38, 0.54);
+}
+
+.bc-command-card span,
+.bc-dedication-card span {
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.bc-command-card strong,
+.bc-dedication-card strong {
+  display: block;
+  margin-top: 0.4rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.45rem, 3vw, 2.2rem);
+  line-height: 1.04;
+  font-weight: 400;
+}
+
+.bc-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.bc-mini-card {
+  display: grid;
+  justify-items: center;
+  gap: 0.55rem;
+  min-height: 8.4rem;
+  padding: 0.85rem;
+  border-radius: 26px;
+  text-align: center;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.bc-mini-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 247, 232, 0.2);
+}
+
+.bc-mini-card img {
+  width: 3.4rem;
+  height: 3.4rem;
+  object-fit: cover;
+  border: 5px solid rgba(255, 247, 232, 0.76);
+  border-radius: 18px;
+  background: var(--cream);
+}
+
+.bc-mini-card span {
+  color: rgba(255, 247, 232, 0.88);
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.bc-dedication-card {
+  width: min(24rem, 82%);
+  justify-self: end;
+  padding: 1rem;
+  border-radius: 28px;
+  transform: rotate(-2deg);
+}
+
+.bc-brand-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 1.2rem 1rem;
+}
+
+.bc-brand-strip span {
+  border: 1px solid rgba(44, 26, 16, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 253, 247, 0.86);
+  color: #4f3828;
+  padding: 0.6rem 0.9rem;
+  font-weight: 900;
+  box-shadow: 0 12px 28px rgba(44, 26, 16, 0.08);
+}
+
+.bc-ecosystem,
+.bc-trust {
+  padding: 5rem clamp(1rem, 6vw, 6rem);
+}
+
+.bc-ecosystem .section-heading,
+.bc-trust .section-heading {
+  max-width: 62rem;
+  margin-bottom: 1.8rem;
+}
+
+.bc-ecosystem .section-heading p,
+.bc-trust .section-heading p {
+  color: #5f4a3f;
+}
+
+.bc-app-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.bc-app-card {
+  position: relative;
+  min-height: 31rem;
+  display: grid;
+  align-content: end;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  border-radius: 38px;
+  background: #2c1a10;
+  box-shadow: var(--shadow);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.bc-app-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 36px 98px rgba(44, 26, 16, 0.24);
+}
+
+.bc-card-image {
+  position: absolute;
+  inset: 0;
+}
+
+.bc-card-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(20, 14, 9, 0.02), rgba(20, 14, 9, 0.78)),
+    var(--card-wash, transparent);
+}
+
+.bc-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 450ms ease;
+}
+
+.bc-app-card:hover .bc-card-image img {
+  transform: scale(1.07);
+}
+
+.bc-app-card-copy {
+  position: relative;
+  display: grid;
+  gap: 0.55rem;
+  padding: clamp(1rem, 3vw, 1.6rem);
+  color: var(--cream);
+}
+
+.bc-app-card-copy > img {
+  width: 4.6rem;
+  height: 4.6rem;
+  object-fit: cover;
+  border: 6px solid rgba(255, 247, 232, 0.76);
+  border-radius: 20px;
+  background: var(--cream);
+}
+
+.bc-app-card h3 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 0.96;
+}
+
+.bc-app-card p:not(.eyebrow) {
+  max-width: 36rem;
+  margin: 0;
+  color: rgba(255, 247, 232, 0.82);
+  line-height: 1.55;
+}
+
+.bc-app-card span {
+  width: fit-content;
+  margin-top: 0.4rem;
+  border-radius: 999px;
+  background: rgba(255, 247, 232, 0.14);
+  color: var(--cream);
+  padding: 0.55rem 0.8rem;
+  font-weight: 900;
+}
+
+.bc-app-card.cook { --card-wash: radial-gradient(circle at 18% 20%, rgba(239, 189, 90, 0.24), transparent 20rem); }
+.bc-app-card.music { --card-wash: radial-gradient(circle at 78% 18%, rgba(242, 138, 46, 0.22), transparent 20rem); }
+.bc-app-card.careers { --card-wash: radial-gradient(circle at 20% 20%, rgba(45, 143, 105, 0.28), transparent 20rem); }
+.bc-app-card.beu { --card-wash: radial-gradient(circle at 78% 18%, rgba(78, 143, 215, 0.24), transparent 20rem); }
+
+.bc-founder-section {
+  width: min(1120px, calc(100% - 2rem));
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.58fr) minmax(0, 1fr);
+  gap: clamp(1rem, 4vw, 3rem);
+  align-items: center;
+  margin: 0 auto 3rem;
+  padding: clamp(1rem, 4vw, 2rem);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 42px;
+  background:
+    radial-gradient(circle at 90% 8%, rgba(239, 189, 90, 0.2), transparent 20rem),
+    linear-gradient(135deg, #fffdf7, #fff3df);
+  box-shadow: var(--shadow);
+}
+
+.bc-founder-portrait {
+  position: relative;
+  overflow: hidden;
+  border-radius: 32px;
+  background: #2c1a10;
+  box-shadow: 0 22px 64px rgba(44, 26, 16, 0.22);
+}
+
+.bc-founder-portrait::after {
+  content: "Founder";
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  border-radius: 999px;
+  background: rgba(44, 26, 16, 0.82);
+  color: var(--cream);
+  padding: 0.5rem 0.75rem;
+  font-weight: 900;
+}
+
+.bc-founder-portrait img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.bc-founder-copy h2 {
+  color: var(--ink);
+}
+
+.bc-founder-copy p:not(.eyebrow) {
+  color: #5f4a3f;
+  line-height: 1.7;
+}
+
+.bc-founder-copy blockquote {
+  margin: 1rem 0;
+  padding: 1rem 1.1rem;
+  border-left: 4px solid var(--gold);
+  border-radius: 0 22px 22px 0;
+  background: rgba(239, 189, 90, 0.16);
+  color: #442b1c;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+  line-height: 1.35;
+}
+
+.bc-founder-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-bottom: 1.1rem;
+}
+
+.bc-founder-tags span {
+  border-radius: 999px;
+  background: #fffaf3;
+  color: #5f3a20;
+  padding: 0.5rem 0.75rem;
+  font-weight: 900;
+  box-shadow: 0 10px 24px rgba(44, 26, 16, 0.08);
+}
+
+.bc-trust {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(239, 189, 90, 0.18), transparent 26rem),
+    linear-gradient(180deg, #fffdf7, #fff7e8);
+}
+
+.bc-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.bc-trust-card {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1rem;
+  border: 1px solid rgba(44, 26, 16, 0.08);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: var(--soft-shadow);
+}
+
+.bc-trust-card span {
+  width: fit-content;
+  border-radius: 999px;
+  background: rgba(239, 189, 90, 0.24);
+  color: #6d4418;
+  padding: 0.35rem 0.6rem;
+  font-weight: 950;
+}
+
+.bc-trust-card h3 {
+  color: var(--ink);
+  font-size: 1.35rem;
+}
+
+.bc-trust-card p {
+  margin: 0;
+  color: #5f4a3f;
+  line-height: 1.55;
+}
+
+.bc-account-panel {
+  margin-top: 0;
+  background:
+    radial-gradient(circle at 8% 0%, rgba(239, 189, 90, 0.22), transparent 18rem),
+    radial-gradient(circle at 96% 10%, rgba(78, 143, 215, 0.15), transparent 18rem),
+    #fff8ec;
+}
+
+.bc-final-note {
+  width: min(1000px, calc(100% - 2rem));
+  margin: 0 auto 3rem;
+  padding: clamp(1.3rem, 4vw, 2.2rem);
+  border-radius: 38px;
+  background:
+    linear-gradient(135deg, rgba(44, 26, 16, 0.94), rgba(79, 47, 30, 0.9)),
+    url("assets/editorial-nightlife-culture.jpg") center / cover no-repeat;
+  box-shadow: var(--shadow);
+  color: var(--cream);
+  text-align: center;
+}
+
+.bc-final-note p,
+.bc-final-note strong {
+  display: block;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+}
+
+.bc-final-note p {
+  font-size: clamp(1.65rem, 4vw, 3.2rem);
+  line-height: 1.05;
+}
+
+.bc-final-note strong {
+  margin-top: 0.75rem;
+  color: var(--gold);
+  font-size: clamp(1.2rem, 2.2vw, 1.75rem);
+}
+
+@media (max-width: 1120px) {
+  .bc-hero,
+  .bc-founder-section {
+    grid-template-columns: 1fr;
+  }
+
+  .bc-trust-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .bc-header {
+    position: sticky;
+  }
+
+  .bc-hero {
+    min-height: auto;
+    margin: 0;
+    padding: 1.35rem 1rem 2rem;
+    border-radius: 0 0 30px 30px;
+  }
+
+  .bc-hero h1 {
+    font-size: clamp(2.65rem, 14vw, 4rem);
+  }
+
+  .bc-founder-note {
+    align-items: flex-start;
+    border-radius: 24px;
+  }
+
+  .bc-command-card,
+  .bc-dedication-card {
+    width: 100%;
+    transform: none;
+  }
+
+  .bc-mini-grid,
+  .bc-app-grid,
+  .bc-trust-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bc-app-card {
+    min-height: 28rem;
+    border-radius: 30px;
+  }
+
+  .bc-ecosystem,
+  .bc-trust {
+    padding: 3.2rem 1rem;
+  }
+
+  .bc-founder-section {
+    border-radius: 30px;
+  }
+
+  .bc-founder-tags,
+  .bc-brand-strip {
+    justify-content: flex-start;
+  }
+}
