@@ -1453,6 +1453,140 @@ h2 {
   margin: 0;
 }
 
+.legal-page {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(239, 189, 90, 0.22), transparent 28rem),
+    linear-gradient(135deg, #fff7e8 0%, #f6ead8 52%, #fffdf7 100%);
+}
+
+.legal-shell {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: clamp(7.5rem, 10vw, 9rem) 0 4rem;
+  display: grid;
+  gap: 1.35rem;
+}
+
+.legal-hero,
+.legal-card,
+.legal-grid article,
+.contact-grid article,
+.product-list article {
+  border: 1px solid rgba(44, 26, 16, 0.12);
+  background: rgba(255, 253, 247, 0.86);
+  box-shadow: var(--soft-shadow);
+  border-radius: 28px;
+}
+
+.legal-hero {
+  padding: clamp(2rem, 5vw, 4rem);
+  max-width: 880px;
+}
+
+.legal-hero h1 {
+  margin: 0.35rem 0 1rem;
+  max-width: 760px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.45rem, 6vw, 5.2rem);
+  line-height: 0.95;
+}
+
+.legal-hero p,
+.legal-card p,
+.legal-grid p,
+.product-list p,
+.contact-grid p {
+  max-width: 72ch;
+  color: #5f4a3f;
+  line-height: 1.72;
+}
+
+.legal-updated {
+  display: inline-flex;
+  margin-top: 0.75rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(239, 189, 90, 0.18);
+  color: var(--ink) !important;
+  font-weight: 850;
+}
+
+.legal-card,
+.legal-grid article,
+.contact-grid article {
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.legal-card h2,
+.legal-grid h2,
+.product-list h2,
+.contact-grid h2 {
+  margin: 0 0 0.7rem;
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+}
+
+.legal-card ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.5rem;
+  color: #5f4a3f;
+  line-height: 1.65;
+}
+
+.legal-card a,
+.legal-grid a,
+.product-list a {
+  color: #7a351f;
+  font-weight: 900;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.legal-grid,
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.contact-grid article {
+  display: grid;
+  align-content: start;
+  gap: 0.7rem;
+}
+
+.contact-grid .button {
+  justify-self: start;
+  text-decoration: none;
+}
+
+.product-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.product-list article {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  align-items: center;
+  gap: 1.25rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.product-list img {
+  width: 100%;
+  max-height: 92px;
+  object-fit: contain;
+  border-radius: 18px;
+  background: rgba(255, 247, 232, 0.72);
+  padding: 0.65rem;
+}
+
+.legal-footer {
+  margin-top: 0;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(22px);
@@ -1491,6 +1625,16 @@ h2 {
   .river-panel:nth-child(even),
   .site-footer {
     grid-template-columns: 1fr;
+  }
+
+  .legal-grid,
+  .contact-grid,
+  .product-list article {
+    grid-template-columns: 1fr;
+  }
+
+  .product-list img {
+    width: min(150px, 60vw);
   }
 
   .hero-previews {

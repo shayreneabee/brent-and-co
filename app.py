@@ -233,6 +233,9 @@ def init_db():
 @app.before_request
 def ensure_db():
     canonical_url = canonical_url_for_current_request()
+    non_www_public_host = BRENT_PUBLIC_HOST.removeprefix("www.")
+    if canonical_url and request.method in {"GET", "HEAD"} and request.host.lower() == non_www_public_host:
+        return redirect(canonical_url, code=302)
     if canonical_url and request.path.startswith(("/login", "/signup", "/auth/", "/sso/start")):
         log_oauth_debug("canonical_redirect", host=request.host, target=canonical_url)
         return redirect(canonical_url, code=302)
@@ -956,6 +959,24 @@ def index():
 @app.get("/about")
 def about():
     return send_from_directory(BASE_DIR, "about.html")
+
+
+@app.get("/privacy.html")
+@app.get("/privacy")
+def privacy():
+    return send_from_directory(BASE_DIR, "privacy.html")
+
+
+@app.get("/terms.html")
+@app.get("/terms")
+def terms():
+    return send_from_directory(BASE_DIR, "terms.html")
+
+
+@app.get("/contact.html")
+@app.get("/contact")
+def contact():
+    return send_from_directory(BASE_DIR, "contact.html")
 
 
 @app.get("/founder.html")
