@@ -720,7 +720,6 @@ def account_dashboard():
         "find-the-beat": "Find The Beat",
         "lets-cook": "Let's Cook Y'all",
         "second-chance": "Second Chance Careers",
-        "beu": "BEU",
     }
     for app_name, label in app_labels.items():
         joined = app_name in membership_names
