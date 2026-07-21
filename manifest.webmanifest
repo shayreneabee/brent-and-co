@@ -5,8 +5,8 @@
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#fff7e8",
-  "theme_color": "#2c1a10",
+  "background_color": "#050816",
+  "theme_color": "#0B1020",
   "icons": [
     {
       "src": "assets/brent-co-icon-192.png",

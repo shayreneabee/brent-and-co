@@ -760,18 +760,18 @@ def account_dashboard():
       <title>My Brent & Co Account</title>
       <link rel="stylesheet" href="/styles.css">
       <style>
-        body {{ min-height: 100vh; background: #f7f2e9; color: #101827; padding: 24px; }}
+        body {{ min-height: 100vh; background: #0b1020; color: #f8fafc; padding: 24px; }}
         .account-shell {{ width: min(1120px, 100%); margin: 0 auto; display: grid; gap: 22px; }}
         .account-hero, .account-panel {{ background: rgba(255,255,255,.92); border: 1px solid rgba(17,24,39,.1); border-radius: 28px; padding: clamp(22px, 4vw, 42px); box-shadow: 0 20px 50px rgba(8,18,35,.12); }}
         .account-hero {{ display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: center; }}
-        .account-avatar {{ width: 96px; height: 96px; border-radius: 28px; object-fit: cover; border: 3px solid #d9a441; background: #fff; }}
+        .account-avatar {{ width: 96px; height: 96px; border-radius: 28px; object-fit: cover; border: 3px solid #d4af37; background: #fff; }}
         .account-hero h1 {{ margin: 4px 0 8px; font-size: clamp(2rem, 5vw, 4.6rem); line-height: .94; }}
         .account-meta {{ display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }}
-        .pill {{ border-radius: 999px; background: #f7f2e9; border: 1px solid #e6d6b8; padding: 8px 12px; font-weight: 800; }}
+        .pill {{ border-radius: 999px; background: #11182b; border: 1px solid rgba(212,175,55,.45); padding: 8px 12px; font-weight: 800; }}
         .app-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }}
         .app-card {{ display: grid; gap: 8px; padding: 18px; border-radius: 20px; background: linear-gradient(135deg, #0f172a, #1f3b49); color: #fff; text-decoration: none; box-shadow: 0 16px 30px rgba(15,23,42,.18); transition: transform .18s ease, box-shadow .18s ease; }}
         .app-card:hover {{ transform: translateY(-3px); box-shadow: 0 20px 38px rgba(15,23,42,.24); }}
-        .app-card span {{ color: #f5c76b; font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 900; }}
+        .app-card span {{ color: #22d3ee; font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 900; }}
         .app-card strong {{ font-size: 1.25rem; }}
         .app-card small {{ color: rgba(255,255,255,.78); }}
         table {{ width: 100%; border-collapse: collapse; margin-top: 14px; }}
@@ -915,13 +915,13 @@ def admin_dashboard():
       <title>Brent & Co Admin</title>
       <link rel="stylesheet" href="/styles.css">
       <style>
-        body {{ padding: 24px; background: #f6f0e7; }}
+        body {{ padding: 24px; background: #0b1020; }}
         main {{ max-width: 1180px; margin: 0 auto; display: grid; gap: 24px; }}
         .admin-card {{ background: #fff; border-radius: 24px; padding: 24px; box-shadow: 0 18px 48px rgba(17, 24, 39, .12); overflow-x: auto; }}
         table {{ width: 100%; border-collapse: collapse; min-width: 720px; }}
         th, td {{ padding: 12px; text-align: left; border-bottom: 1px solid rgba(17, 24, 39, .1); }}
         .app-list {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; padding: 0; list-style: none; }}
-        .app-list li {{ display: grid; gap: 4px; padding: 16px; border-radius: 18px; background: #f7f2e9; }}
+        .app-list li {{ display: grid; gap: 4px; padding: 16px; border-radius: 18px; background: #11182b; color: #f8fafc; }}
       </style>
     </head>
     <body>
